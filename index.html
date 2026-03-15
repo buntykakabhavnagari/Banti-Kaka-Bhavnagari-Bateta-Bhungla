@@ -1,1251 +1,1671 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bunty Kaka Bhavnagari - Bateka Bhungla</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              red: '#C23B22',
-              cream: '#FFFCF7',
-              dark: '#1A1A1A',
-              muted: '#7A7A7A',
-              border: '#E8E4DE',
-              light: '#F5F2ED'
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bunty Kaka Bhavanagri | Authentic Bhavnagari Taste</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FFF9F5;
+            --bg-warm: #FEF3E8;
+            --fg: #3D2314;
+            --fg-light: #6B4C35;
+            --accent: #E86A33;
+            --accent-light: #FFEEE5;
+            --accent-dark: #C8521E;
+            --blue: #4A90A4;
+            --blue-light: #E8F4F8;
+            --card: #FFFFFF;
+            --border: #E8DDD4;
+            --muted: #A89080;
+            --success: #4A9F6E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Background Pattern */
+        .pattern-bg {
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(232, 106, 51, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(74, 144, 164, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(232, 106, 51, 0.03) 0%, transparent 70%);
+        }
+
+        /* Floating Elements Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        @keyframes floatReverse {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(-5deg); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(232, 106, 51, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(232, 106, 51, 0.5); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-reverse { animation: floatReverse 5s ease-in-out infinite; }
+        .animate-slide-up { animation: slideUp 0.6s ease-out forwards; }
+        .animate-scale-in { animation: scaleIn 0.4s ease-out forwards; }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-warm);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+        }
+
+        /* Button Styles */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(232, 106, 51, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            border: 2px solid var(--accent);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* Menu Card */
+        .menu-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--blue));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .menu-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(61, 35, 20, 0.1);
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 450px;
+            max-width: 100%;
+            height: 100vh;
+            background: var(--card);
+            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(61, 35, 20, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .cart-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Quantity Controls */
+        .qty-control {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-warm);
+            border-radius: 30px;
+            padding: 4px;
+        }
+
+        .qty-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: var(--accent);
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qty-btn:hover {
+            background: var(--accent-dark);
+            transform: scale(1.1);
+        }
+
+        .qty-btn:active {
+            transform: scale(0.95);
+        }
+
+        .qty-btn.minus {
+            background: var(--border);
+            color: var(--fg);
+        }
+
+        .qty-btn.minus:hover {
+            background: var(--muted);
+        }
+
+        .qty-display {
+            min-width: 30px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        /* Spice Level */
+        .spice-level {
+            display: flex;
+            gap: 2px;
+        }
+
+        .spice-icon {
+            font-size: 12px;
+            color: var(--accent);
+        }
+
+        .spice-icon.inactive {
+            color: var(--border);
+        }
+
+        /* Form Inputs */
+        .form-input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: var(--card);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px var(--accent-light);
+        }
+
+        .form-input::placeholder {
+            color: var(--muted);
+        }
+
+        /* Radio Button Custom */
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .radio-option:hover {
+            border-color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .radio-option.selected {
+            border-color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .radio-circle {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .radio-option.selected .radio-circle {
+            border-color: var(--accent);
+        }
+
+        .radio-circle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.3s ease;
+        }
+
+        .radio-option.selected .radio-circle::after {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Cart Badge */
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 24px;
+            height: 24px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse-glow 2s infinite;
+        }
+
+        /* Navigation */
+        .nav-link {
+            position: relative;
+            color: var(--fg);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Decorative Elements */
+        .decor-circle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--fg);
+            color: white;
+            padding: 16px 28px;
+            border-radius: 50px;
+            font-weight: 500;
+            z-index: 2000;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* Order Steps */
+        .step-indicator {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .step-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .step-dot.active {
+            background: var(--accent);
+            transform: scale(1.2);
+        }
+
+        .step-dot.completed {
+            background: var(--success);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
             }
-          },
-          fontFamily: {
-            display: ['Playfair Display', 'serif'],
-            sans: ['Inter', 'sans-serif']
-          }
+
+            .menu-card {
+                padding: 18px;
+            }
+
+            h1 {
+                font-size: 2.5rem !important;
+            }
+
+            h2 {
+                font-size: 2rem !important;
+            }
         }
-      }
-    }
-  </script>
-  
-  <style>
-    :root {
-      --bg: #FFFCF7;
-      --fg: #1A1A1A;
-      --muted: #7A7A7A;
-      --accent: #C23B22;
-      --card: #FFFFFF;
-      --border: #E8E4DE;
-      --light: #F5F2ED;
-    }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    html {
-      scroll-behavior: smooth;
-    }
-    
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--fg);
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-    
-    ::selection {
-      background: var(--accent);
-      color: white;
-    }
-    
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--border);
-      border-radius: 3px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--muted);
-    }
-    
-    /* Typography */
-    .font-display {
-      font-family: 'Playfair Display', serif;
-    }
-    
-    /* Animations */
-    @keyframes fadeUp {
-      from { 
-        opacity: 0; 
-        transform: translateY(20px); 
-      }
-      to { 
-        opacity: 1; 
-        transform: translateY(0); 
-      }
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    
-    @keyframes slideIn {
-      from { 
-        transform: translateX(100%); 
-      }
-      to { 
-        transform: translateX(0); 
-      }
-    }
-    
-    @keyframes scaleIn {
-      from { 
-        opacity: 0;
-        transform: scale(0.95); 
-      }
-      to { 
-        opacity: 1;
-        transform: scale(1); 
-      }
-    }
-    
-    .animate-fade-up {
-      animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    
-    .animate-fade-in {
-      animation: fadeIn 0.6s ease-out forwards;
-    }
-    
-    .animate-scale-in {
-      animation: scaleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    
-    /* Reveal on Scroll */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    /* Button Styles */
-    .btn-primary {
-      background: var(--fg);
-      color: var(--bg);
-      padding: 14px 32px;
-      border-radius: 60px;
-      font-weight: 500;
-      font-size: 14px;
-      letter-spacing: 0.02em;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
-    
-    .btn-primary:active {
-      transform: translateY(0);
-    }
-    
-    .btn-secondary {
-      background: transparent;
-      color: var(--fg);
-      padding: 14px 32px;
-      border-radius: 60px;
-      font-weight: 500;
-      font-size: 14px;
-      letter-spacing: 0.02em;
-      border: 1.5px solid var(--border);
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    
-    .btn-secondary:hover {
-      border-color: var(--fg);
-      background: var(--fg);
-      color: var(--bg);
-    }
-    
-    /* Menu Card */
-    .menu-card {
-      background: var(--card);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      border: 1px solid transparent;
-    }
-    
-    .menu-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.06);
-      border-color: var(--border);
-    }
-    
-    /* Cart Sidebar */
-    .cart-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(26, 26, 26, 0.4);
-      backdrop-filter: blur(8px);
-      z-index: 998;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.4s ease;
-    }
-    
-    .cart-overlay.open {
-      opacity: 1;
-      pointer-events: all;
-    }
-    
-    .cart-sidebar {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 100%;
-      max-width: 460px;
-      height: 100vh;
-      background: var(--bg);
-      z-index: 999;
-      transform: translateX(100%);
-      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      display: flex;
-      flex-direction: column;
-      box-shadow: -20px 0 60px rgba(0,0,0,0.1);
-    }
-    
-    .cart-sidebar.open {
-      transform: translateX(0);
-    }
-    
-    /* Form Styles */
-    .form-input {
-      width: 100%;
-      padding: 16px 20px;
-      background: var(--card);
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      font-size: 15px;
-      font-family: inherit;
-      transition: all 0.3s ease;
-      color: var(--fg);
-    }
-    
-    .form-input:focus {
-      outline: none;
-      border-color: var(--fg);
-      box-shadow: 0 0 0 4px rgba(26, 26, 26, 0.05);
-    }
-    
-    .form-input::placeholder {
-      color: var(--muted);
-    }
-    
-    /* Radio Button Custom */
-    .radio-option {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 16px 20px;
-      background: var(--card);
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .radio-option:hover {
-      border-color: var(--muted);
-    }
-    
-    .radio-option.selected {
-      border-color: var(--fg);
-      background: var(--light);
-    }
-    
-    .radio-dot {
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--border);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-    }
-    
-    .radio-option.selected .radio-dot {
-      border-color: var(--accent);
-    }
-    
-    .radio-dot::after {
-      content: '';
-      width: 10px;
-      height: 10px;
-      background: var(--accent);
-      border-radius: 50%;
-      transform: scale(0);
-      transition: transform 0.2s ease;
-    }
-    
-    .radio-option.selected .radio-dot::after {
-      transform: scale(1);
-    }
-    
-    /* Quantity Control */
-    .qty-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 1.5px solid var(--border);
-      background: var(--card);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-size: 18px;
-      color: var(--fg);
-    }
-    
-    .qty-btn:hover {
-      border-color: var(--fg);
-      background: var(--fg);
-      color: var(--bg);
-    }
-    
-    /* Badge */
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      background: var(--light);
-      color: var(--fg);
-      font-size: 12px;
-      font-weight: 500;
-      border-radius: 100px;
-      letter-spacing: 0.03em;
-    }
-    
-    /* Spice Dot */
-    .spice-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--border);
-    }
-    
-    .spice-dot.active {
-      background: var(--accent);
-    }
-    
-    /* Focus States */
-    button:focus-visible,
-    a:focus-visible,
-    input:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
-    
-    /* Reduced Motion */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-    
-    /* Smooth Image Loading */
-    .img-loader {
-      background: var(--light);
-      animation: shimmer 1.5s infinite;
-    }
-    
-    @keyframes shimmer {
-      0% { opacity: 0.5; }
-      50% { opacity: 1; }
-      100% { opacity: 0.5; }
-    }
-    
-    /* Transitions */
-    .page-transition {
-      transition: opacity 0.3s ease;
-    }
-  </style>
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Category Tabs */
+        .category-tab {
+            padding: 10px 24px;
+            border-radius: 50px;
+            background: transparent;
+            border: 2px solid var(--border);
+            color: var(--fg-light);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .category-tab:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .category-tab.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        /* Image Placeholder */
+        .img-placeholder {
+            background: linear-gradient(135deg, var(--bg-warm) 0%, var(--border) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .img-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Location Button */
+        .location-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: var(--blue-light);
+            color: var(--blue);
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .location-btn:hover {
+            background: var(--blue);
+            color: white;
+        }
+
+        /* Price Tag */
+        .price-tag {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--accent);
+        }
+
+        /* Social Links */
+        .social-link {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-warm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--fg);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Floating Cart Button */
+        .floating-cart {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 8px 30px rgba(232, 106, 51, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .floating-cart:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(232, 106, 51, 0.5);
+        }
+    </style>
 </head>
-<body>
-  
-  <!-- Navigation -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-brand-cream/90 backdrop-blur-md border-b border-brand-border/50">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 md:h-20">
-        <a href="#" class="flex items-center gap-3">
-          <div class="w-10 h-10 md:w-11 md:h-11 bg-brand-dark rounded-full flex items-center justify-center">
-            <span class="font-display text-white text-sm md:text-base">BK</span>
-          </div>
-          <div>
-            <p class="font-display text-base md:text-lg text-brand-dark leading-none">Bunty Kaka</p>
-            <p class="text-[10px] md:text-xs text-brand-muted tracking-wider uppercase mt-0.5">Bhavnagari</p>
-          </div>
-        </a>
-        
-        <div class="hidden md:flex items-center gap-10">
-          <a href="#menu" class="text-sm text-brand-dark/70 hover:text-brand-dark transition-colors">Menu</a>
-          <a href="#story" class="text-sm text-brand-dark/70 hover:text-brand-dark transition-colors">Story</a>
-          <a href="#location" class="text-sm text-brand-dark/70 hover:text-brand-dark transition-colors">Location</a>
+<body class="pattern-bg">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-[var(--border)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <a href="#" class="flex items-center gap-3">
+                    <!-- Logo placeholder - Add your logo image here -->
+                    <div class="w-12 h-12 rounded-full img-placeholder overflow-hidden">
+                        <!-- REPLACE: Add your logo image here -->
+                        <img src="https://z-cdn-media.chatglm.cn/files/f16c914a-c91a-41cb-9974-e8aae61517aa.jpeg?auth_key=1873520342-118af2c3b41e461f8f3b76efbfbabd46-0-0db4f69519c0b851bad034fb715c2eec" alt="Bunty Kaka Bhavanagri Logo">
+                    </div>
+                    <div class="hidden sm:block">
+                        <span class="font-bold text-lg text-[var(--fg)]">Bunty Kaka</span>
+                        <span class="block text-xs text-[var(--muted)]">Bhavanagri</span>
+                    </div>
+                </a>
+                
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#menu" class="nav-link">Menu</a>
+                    <a href="#about" class="nav-link">Our Story</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                
+                <button onclick="openCart()" class="relative p-2 rounded-full hover:bg-[var(--bg-warm)] transition-colors" aria-label="Open cart">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="m1 1 4 4h16l-2.5 9H6.5"></path>
+                    </svg>
+                    <span id="navCartBadge" class="cart-badge hidden">0</span>
+                </button>
+            </div>
         </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="min-h-screen flex items-center pt-20 relative overflow-hidden">
+        <!-- Decorative Elements -->
+        <div class="decor-circle w-96 h-96 bg-[var(--accent)] opacity-5 -top-20 -right-20 animate-float"></div>
+        <div class="decor-circle w-64 h-64 bg-[var(--blue)] opacity-5 bottom-20 -left-10 animate-float-reverse"></div>
         
-        <div class="flex items-center gap-4">
-          <button onclick="openCart()" class="relative p-2 hover:bg-brand-light rounded-full transition-colors" aria-label="Open cart">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-brand-dark">
-              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-              <line x1="3" y1="6" x2="21" y2="6"/>
-              <path d="M16 10a4 4 0 0 1-8 0"/>
-            </svg>
-            <span id="cartBadge" class="absolute -top-0.5 -right-0.5 w-5 h-5 bg-brand-red text-white text-[10px] rounded-full flex items-center justify-center font-medium opacity-0 scale-0 transition-all">0</span>
-          </button>
-          
-          <button onclick="toggleMobileMenu()" class="md:hidden p-2" aria-label="Toggle menu">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-brand-dark">
-              <line x1="3" y1="6" x2="21" y2="6"/>
-              <line x1="3" y1="12" x2="21" y2="12"/>
-              <line x1="3" y1="18" x2="21" y2="18"/>
-            </svg>
-          </button>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div class="order-2 lg:order-1 animate-slide-up">
+                    <span class="inline-block px-4 py-2 bg-[var(--accent-light)] text-[var(--accent)] rounded-full text-sm font-semibold mb-6">
+                        Since 2024 | Authentic Bhavnagari Taste
+                    </span>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--fg)] leading-tight mb-6">
+                        Bunty Kaka<br>
+                        <span class="text-[var(--accent)]">Bhavanagri</span>
+                    </h1>
+                    <p class="text-lg sm:text-xl text-[var(--fg-light)] mb-8 leading-relaxed max-w-lg">
+                        Experience the legendary Bhavnagari Bateta Bhungla with authentic flavors that transport you to the streets of Bhavnagar.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4 mb-8">
+                        <a href="#menu" class="btn-primary inline-flex items-center gap-2">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg>
+                            Explore Menu
+                        </a>
+                        <a href="#about" class="btn-secondary">Our Story</a>
+                    </div>
+                    
+                    <div class="flex items-center gap-6 text-sm">
+                        <div class="flex items-center gap-2">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            <span class="text-[var(--fg-light)]">05:30 PM - 11:00 PM</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+                                <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span class="text-[var(--fg-light)]">Bhavnagar, Gujarat</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-1 lg:order-2 flex justify-center">
+                    <div class="relative">
+                        <div class="w-72 h-72 sm:w-96 sm:h-96 rounded-full img-placeholder animate-float shadow-2xl overflow-hidden border-8 border-white">
+                            <!-- REPLACE: Add your hero/main food image here -->
+                            <img src="https://z-cdn-media.chatglm.cn/files/f16c914a-c91a-41cb-9974-e8aae61517aa.jpeg?auth_key=1873520342-118af2c3b41e461f8f3b76efbfbabd46-0-0db4f69519c0b851bad034fb715c2eec" alt="Bunty Kaka Bhavanagri Logo" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-xl animate-scale-in" style="animation-delay: 0.3s;">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 bg-[var(--accent-light)] rounded-full flex items-center justify-center">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+                                        <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <span class="block text-xs text-[var(--muted)]">Fresh Daily</span>
+                                    <span class="font-bold text-[var(--fg)]">Made with Love</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -top-4 -right-4 bg-white rounded-2xl p-4 shadow-xl animate-scale-in" style="animation-delay: 0.5s;">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 bg-[var(--blue-light)] rounded-full flex items-center justify-center">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <span class="block text-xs text-[var(--muted)]">FSSAI</span>
+                                    <span class="font-bold text-[var(--fg)]">Certified</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </nav>
-  
-  <!-- Mobile Menu -->
-  <div id="mobileMenu" class="fixed inset-0 bg-brand-cream z-40 hidden opacity-0 transition-opacity duration-300">
-    <div class="flex flex-col items-center justify-center h-full gap-8">
-      <a href="#menu" onclick="toggleMobileMenu()" class="font-display text-3xl text-brand-dark">Menu</a>
-      <a href="#story" onclick="toggleMobileMenu()" class="font-display text-3xl text-brand-dark">Story</a>
-      <a href="#location" onclick="toggleMobileMenu()" class="font-display text-3xl text-brand-dark">Location</a>
-    </div>
-    <button onclick="toggleMobileMenu()" class="absolute top-5 right-6 p-2" aria-label="Close menu">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-brand-dark">
-        <line x1="18" y1="6" x2="6" y2="18"/>
-        <line x1="6" y1="6" x2="18" y2="18"/>
-      </svg>
+    </header>
+
+    <!-- About / Founder Story Section -->
+    <section id="about" class="py-20 sm:py-28 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div class="reveal">
+                    <div class="relative">
+                        <div class="w-full aspect-square max-w-md mx-auto rounded-3xl img-placeholder overflow-hidden shadow-2xl">
+                            <!-- REPLACE: Add founder/chef image here -->
+                            <img src="https://z-cdn-media.chatglm.cn/files/f16c914a-c91a-41cb-9974-e8aae61517aa.jpeg?auth_key=1873520342-118af2c3b41e461f8f3b76efbfbabd46-0-0db4f69519c0b851bad034fb715c2eec" alt="Founder Bunty Kaka" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-[var(--accent)] rounded-2xl -z-10"></div>
+                        <div class="absolute -top-6 -left-6 w-24 h-24 bg-[var(--blue-light)] rounded-2xl -z-10"></div>
+                    </div>
+                </div>
+                
+                <div class="reveal" style="transition-delay: 0.2s;">
+                    <span class="inline-block px-4 py-2 bg-[var(--blue-light)] text-[var(--blue)] rounded-full text-sm font-semibold mb-6">
+                        Our Story
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-[var(--fg)] mb-6">
+                        A Taste That Travels Through Generations
+                    </h2>
+                    <div class="space-y-4 text-[var(--fg-light)] leading-relaxed">
+                        <p>
+                            In the bustling lanes of Bhavnagar, where the aroma of spices mingles with the sea breeze, Bunty Kaka discovered his passion for cooking at the age of twelve. Watching his grandmother prepare Bateta Bhungla with meticulous care, he learned that great food is not just about ingredients—it's about love, patience, and tradition.
+                        </p>
+                        <p>
+                            After years of perfecting the art of making the perfect Bhungla, Bunty Kaka decided to bring the authentic taste of Bhavnagar to everyone. His secret? Fresh ingredients, traditional recipes passed down through generations, and that extra sprinkle of warmth in every dish.
+                        </p>
+                        <p>
+                            Today, Bunty Kaka Bhavanagri stands as a testament to those childhood memories, serving the same authentic flavors that once filled his grandmother's kitchen. Every bite tells a story of heritage, passion, and the undying spirit of Bhavnagari cuisine.
+                        </p>
+                    </div>
+                    
+                    <div class="mt-8 p-6 bg-[var(--bg-warm)] rounded-2xl border-l-4 border-[var(--accent)]">
+                        <p class="text-lg italic text-[var(--fg)]">
+                            "Food is not just sustenance; it's a memory, a story, a connection to our roots."
+                        </p>
+                        <p class="mt-2 font-semibold text-[var(--accent)]">- Bunty Kaka</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 sm:py-28 bg-white relative">
+        <div class="absolute inset-0 opacity-50" style="background-image: radial-gradient(circle at 2px 2px, var(--border) 1px, transparent 0); background-size: 40px 40px;"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center mb-12 reveal">
+                <span class="inline-block px-4 py-2 bg-[var(--accent-light)] text-[var(--accent)] rounded-full text-sm font-semibold mb-4">
+                    Our Menu
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-[var(--fg)] mb-4">
+                    Authentic Bhavnagari Delights
+                </h2>
+                <p class="text-[var(--fg-light)] max-w-2xl mx-auto">
+                    Each dish is crafted with love, using traditional recipes and the freshest ingredients
+                </p>
+            </div>
+
+            <!-- Category Tabs -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12 reveal">
+                <button class="category-tab active" onclick="filterCategory('all')">All Items</button>
+                <button class="category-tab" onclick="filterCategory('bhungla')">Bateta Bhungla</button>
+                <button class="category-tab" onclick="filterCategory('snacks')">Special Snacks</button>
+                <button class="category-tab" onclick="filterCategory('drinks')">Drinks</button>
+            </div>
+
+            <!-- Menu Grid -->
+            <div id="menuGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Menu items will be rendered here by JavaScript -->
+            </div>
+
+            <div class="mt-8 text-center reveal">
+                <p class="text-[var(--muted)] text-sm">
+                    Parcel Charge Extra - Rs 10
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 sm:py-28 relative overflow-hidden">
+        <div class="decor-circle w-96 h-96 bg-[var(--accent)] opacity-5 -bottom-20 -right-20"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal">
+                <span class="inline-block px-4 py-2 bg-[var(--accent-light)] text-[var(--accent)] rounded-full text-sm font-semibold mb-4">
+                    Contact Us
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-[var(--fg)] mb-4">
+                    We'd Love to Hear From You
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
+                <div class="bg-white rounded-2xl p-6 text-center border border-[var(--border)] hover:border-[var(--accent)] transition-colors">
+                    <div class="w-14 h-14 bg-[var(--accent-light)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-[var(--fg)] mb-2">Opening Hours</h3>
+                    <p class="text-[var(--fg-light)] text-sm">05:30 PM - 11:00 PM<br>Daily</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 text-center border border-[var(--border)] hover:border-[var(--accent)] transition-colors">
+                    <div class="w-14 h-14 bg-[var(--blue-light)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-[var(--fg)] mb-2">Call Us</h3>
+                    <a href="tel:+919824847345" class="text-[var(--accent)] font-medium hover:underline">+91 98248 47345</a>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 text-center border border-[var(--border)] hover:border-[var(--accent)] transition-colors">
+                    <div class="w-14 h-14 bg-[var(--accent-light)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-[var(--fg)] mb-2">Email Us</h3>
+                    <a href="mailto:buntykaka.bhavnagari@gmail.com" class="text-[var(--accent)] font-medium hover:underline text-sm break-all">buntykaka.bhavnagari@gmail.com</a>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 text-center border border-[var(--border)] hover:border-[var(--accent)] transition-colors">
+                    <div class="w-14 h-14 bg-[var(--blue-light)] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-[var(--fg)] mb-2">Location</h3>
+                    <a href="https://maps.app.goo.gl/TRxf49KJaL5XdeRQ7" target="_blank" class="text-[var(--accent)] font-medium hover:underline">View on Map</a>
+                </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="mt-12 text-center reveal">
+                <p class="text-[var(--fg-light)] mb-4">Follow us on social media</p>
+                <div class="flex justify-center gap-4">
+                    <a href="https://youtube.com/@buntykaka.bhavnagari?si=q9rkomVv_Kd8zTKH" target="_blank" class="social-link" aria-label="YouTube">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.facebook.com/share/18EfCRBMMg/" target="_blank" class="social-link" aria-label="Facebook">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/bunty_kaka_bhavnagari?igsh=MW04emV1djZ3bnc5dQ==" target="_blank" class="social-link" aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="https://wa.me/919824847345" target="_blank" class="social-link" aria-label="WhatsApp">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[var(--fg)] text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 items-center">
+                <div class="flex items-center gap-4">
+                    <div class="w-16 h-16 rounded-full img-placeholder overflow-hidden bg-white">
+                        <!-- REPLACE: Add your logo image here -->
+                        <img src="https://z-cdn-media.chatglm.cn/files/f16c914a-c91a-41cb-9974-e8aae61517aa.jpeg?auth_key=1873520342-118af2c3b41e461f8f3b76efbfbabd46-0-0db4f69519c0b851bad034fb715c2eec" alt="Bunty Kaka Bhavanagri Logo" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg">Bunty Kaka Bhavanagri</h3>
+                        <p class="text-white/70 text-sm">Authentic Bhavnagari Taste</p>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <p class="text-white/70 text-sm">FSSAI License: 20724037001123</p>
+                    <p class="text-white/50 text-sm mt-2">Since 2024</p>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <p class="text-white/70 text-sm">Open Daily: 05:30 PM - 11:00 PM</p>
+                    <p class="text-white/50 text-sm mt-2">Bhavnagar, Gujarat, India</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 mt-8 pt-8 text-center">
+                <p class="text-white/50 text-sm">
+                    &copy; 2024 Bunty Kaka Bhavanagri. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Cart Button (Mobile) -->
+    <button id="floatingCart" onclick="openCart()" class="floating-cart lg:hidden hidden" aria-label="Open cart">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="m1 1 4 4h16l-2.5 9H6.5"></path>
+        </svg>
+        <span id="floatingCartBadge" class="cart-badge hidden">0</span>
     </button>
-  </div>
-  
-  <!-- Hero Section -->
-  <section class="min-h-screen pt-20 flex items-center">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-12 md:py-20 w-full">
-      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-        <div class="order-2 lg:order-1 animate-fade-up">
-          <div class="badge mb-6">
-            <span class="w-1.5 h-1.5 bg-brand-red rounded-full"></span>
-            Open Today 5:30 PM - 12:00 AM
-          </div>
-          
-          <h1 class="font-display text-5xl md:text-6xl lg:text-7xl text-brand-dark leading-[1.1] mb-6">
-            Authentic<br>
-            <span class="text-brand-red">Kathiawadi</span><br>
-            Bateka Bhungla
-          </h1>
-          
-          <p class="text-lg text-brand-muted mb-8 max-w-md leading-relaxed">
-            Bhavnagar na famous street food, now in Nikol. Traditional recipes passed down through generations.
-          </p>
-          
-          <div class="flex flex-wrap gap-4">
-            <button onclick="scrollToMenu()" class="btn-primary">
-              View Menu
+
+    <!-- Cart Overlay -->
+    <div id="cartOverlay" class="cart-overlay" onclick="closeCart()"></div>
+
+    <!-- Cart Sidebar -->
+    <aside id="cartSidebar" class="cart-sidebar" role="dialog" aria-label="Shopping cart">
+        <div class="p-6 border-b border-[var(--border)] flex items-center justify-between bg-[var(--bg-warm)]">
+            <h2 class="text-xl font-bold text-[var(--fg)]">Your Order</h2>
+            <button onclick="closeCart()" class="w-10 h-10 rounded-full hover:bg-[var(--border)] flex items-center justify-center transition-colors" aria-label="Close cart">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
             </button>
-            <a href="#location" class="btn-secondary">
-              Find Us
-            </a>
-          </div>
-          
-          <div class="flex items-center gap-8 mt-12 pt-8 border-t border-brand-border">
-            <div>
-              <p class="font-display text-3xl text-brand-dark">4.9</p>
-              <p class="text-sm text-brand-muted mt-1">Rating</p>
-            </div>
-            <div class="w-px h-12 bg-brand-border"></div>
-            <div>
-              <p class="font-display text-3xl text-brand-dark">500+</p>
-              <p class="text-sm text-brand-muted mt-1">Daily Orders</p>
-            </div>
-            <div class="w-px h-12 bg-brand-border"></div>
-            <div>
-              <p class="font-display text-3xl text-brand-dark">2024</p>
-              <p class="text-sm text-brand-muted mt-1">Est.</p>
-            </div>
-          </div>
         </div>
-        
-        <div class="order-1 lg:order-2 animate-fade-up" style="animation-delay: 0.2s;">
-          <div class="relative">
-            <div class="aspect-[4/5] rounded-3xl overflow-hidden bg-brand-light">
-              <img src="https://z-cdn-media.chatglm.cn/files/0f3033a1-23bc-4bdf-87b4-2b55ea9c861a.png?auth_key=1873079545-5db6ed767255465a84d6d0fa54b5d7e8-0-00eb82b1ff88015bc124f902da1cbd4f" 
-                   alt="Bateka Bhungla" 
-                   class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
-            </div>
-            <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl p-5 shadow-xl border border-brand-border/50">
-              <p class="text-sm text-brand-muted mb-1">Starting from</p>
-              <p class="font-display text-3xl text-brand-dark">Rs 10</p>
-            </div>
-          </div>
+
+        <div id="cartContent" class="flex-1 overflow-y-auto">
+            <!-- Cart items will be rendered here -->
         </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Menu Section -->
-  <section id="menu" class="py-20 md:py-28 bg-white">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <div class="text-center mb-16 reveal">
-        <p class="text-sm text-brand-muted tracking-widest uppercase mb-4">Our Offerings</p>
-        <h2 class="font-display text-4xl md:text-5xl text-brand-dark mb-4">The Menu</h2>
-        <p class="text-brand-muted max-w-lg mx-auto">Each dish is crafted with authentic Kathiawadi spices and traditional cooking methods.</p>
-      </div>
-      
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" id="menuGrid">
-        <!-- Menu items rendered by JS -->
-      </div>
-    </div>
-  </section>
-  
-  <!-- Story Section -->
-  <section id="story" class="py-20 md:py-28 bg-brand-light">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <div class="reveal">
-          <p class="text-sm text-brand-muted tracking-widest uppercase mb-4">Our Story</p>
-          <h2 class="font-display text-4xl md:text-5xl text-brand-dark mb-6">From Bhavnagar<br>to Your Heart</h2>
-          <p class="text-brand-muted leading-relaxed mb-6">
-            What started as a humble dream in the streets of Bhavnagar has found its home in Nikol. Bunty Kaka brought with him not just recipes, but generations of culinary wisdom.
-          </p>
-          <p class="text-brand-muted leading-relaxed mb-8">
-            Every plate of Bateka Bhungla is a tribute to our roots — cooked in traditional iron kadai with spices ground the old-fashioned way.
-          </p>
-          <div class="flex items-center gap-4">
-            <div class="w-14 h-14 bg-brand-dark rounded-full flex items-center justify-center">
-              <span class="font-display text-white text-lg">BK</span>
-            </div>
-            <div>
-              <p class="font-display text-lg text-brand-dark">Bunty Kaka</p>
-              <p class="text-sm text-brand-muted">Founder & Chef</p>
-            </div>
-          </div>
+
+        <div id="cartFooter" class="p-6 border-t border-[var(--border)] bg-[var(--bg-warm)] hidden">
+            <!-- Footer will be rendered here -->
         </div>
-        
-        <div class="reveal" style="transition-delay: 0.15s;">
-          <div class="relative">
-            <div class="aspect-square rounded-3xl overflow-hidden">
-              <img src="https://z-cdn-media.chatglm.cn/files/f46cfece-aa3c-4182-b937-0d755a9bf3dd.jpg?auth_key=1873079545-939b1065e361456099acc33723517376-0-7c94ee61c520b8e8733b5cab25f4bbd9" 
-                   alt="Food Cart" 
-                   class="w-full h-full object-cover">
-            </div>
-            <div class="absolute -bottom-4 -right-4 md:-bottom-8 md:-right-8 bg-brand-dark text-white p-6 md:p-8 rounded-2xl">
-              <p class="font-display text-4xl md:text-5xl">2024</p>
-              <p class="text-sm text-white/60 mt-1">Established</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Location Section -->
-  <section id="location" class="py-20 md:py-28 bg-white">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <div class="reveal">
-          <p class="text-sm text-brand-muted tracking-widest uppercase mb-4">Find Us</p>
-          <h2 class="font-display text-4xl md:text-5xl text-brand-dark mb-8">Cart Location</h2>
-          
-          <div class="space-y-6">
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 bg-brand-light rounded-xl flex items-center justify-center flex-shrink-0">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-brand-dark">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                  <circle cx="12" cy="10" r="3"/>
-                </svg>
-              </div>
-              <div>
-                <p class="font-medium text-brand-dark mb-1">Location</p>
-                <p class="text-brand-muted">Nikol, Ahmedabad, Gujarat</p>
-              </div>
-            </div>
-            
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 bg-brand-light rounded-xl flex items-center justify-center flex-shrink-0">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-brand-dark">
-                  <circle cx="12" cy="12" r="10"/>
-                  <polyline points="12 6 12 12 16 14"/>
-                </svg>
-              </div>
-              <div>
-                <p class="font-medium text-brand-dark mb-1">Opening Hours</p>
-                <p class="text-brand-muted">Daily: 5:30 PM - 12:00 AM</p>
-              </div>
-            </div>
-            
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 bg-brand-light rounded-xl flex items-center justify-center flex-shrink-0">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-brand-dark">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-                </svg>
-              </div>
-              <div>
-                <p class="font-medium text-brand-dark mb-1">Contact</p>
-                <p class="text-brand-muted">+91 9824847345</p>
-              </div>
-            </div>
-          </div>
-          
-          <a href="https://maps.app.goo.gl/kiqJ2gdhNNmNhd5T9" target="_blank" rel="noopener noreferrer" class="btn-primary inline-flex mt-8">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="mr-2">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-              <circle cx="12" cy="10" r="3"/>
-            </svg>
-            Get Directions
-          </a>
-        </div>
-        
-        <div class="reveal" style="transition-delay: 0.15s;">
-          <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-brand-border">
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.9040861737367!2d72.65!3d23.05!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDAzJzAwLjAiTiA3MsKwMzknMDAuMCJF!5e0!3m2!1sen!2sin!4v1234567890"
-              width="100%" 
-              height="100%" 
-              style="border:0;" 
-              allowfullscreen="" 
-              loading="lazy"
-              title="Location Map">
-            </iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Footer -->
-  <footer class="py-12 bg-brand-dark text-white">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-            <span class="font-display text-brand-dark text-sm">BK</span>
-          </div>
-          <div>
-            <p class="font-display text-base">Bunty Kaka Bhavnagari</p>
-            <p class="text-xs text-white/50">Since 2024</p>
-          </div>
-        </div>
-        
-        <p class="text-sm text-white/50">2024 All rights reserved. Made in Bhavnagar.</p>
-      </div>
-    </div>
-  </footer>
-  
-  <!-- Cart Overlay -->
-  <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
-  
-  <!-- Cart Sidebar -->
-  <aside class="cart-sidebar" id="cartSidebar" role="dialog" aria-label="Shopping cart">
-    
-    <!-- Step 1: Cart Items -->
-    <div id="cartStep1" class="flex flex-col h-full">
-      <div class="flex items-center justify-between p-6 border-b border-brand-border">
-        <h3 class="font-display text-2xl text-brand-dark">Your Order</h3>
-        <button onclick="closeCart()" class="p-2 hover:bg-brand-light rounded-full transition-colors" aria-label="Close cart">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-brand-dark">
-            <line x1="18" y1="6" x2="6" y2="18"/>
-            <line x1="6" y1="6" x2="18" y2="18"/>
-          </svg>
-        </button>
-      </div>
-      
-      <div class="flex-1 overflow-y-auto p-6" id="cartItemsContainer">
-        <!-- Cart items -->
-      </div>
-      
-      <div class="p-6 border-t border-brand-border bg-white">
-        <div class="flex justify-between items-center mb-6">
-          <span class="text-brand-muted">Subtotal</span>
-          <span class="font-display text-2xl text-brand-dark" id="cartSubtotal">Rs 0</span>
-        </div>
-        <button onclick="proceedToCheckout()" id="checkoutBtn" class="btn-primary w-full" disabled>
-          Proceed to Checkout
-        </button>
-      </div>
-    </div>
-    
-    <!-- Step 2: Checkout Options -->
-    <div id="cartStep2" class="flex flex-col h-full hidden">
-      <div class="flex items-center gap-4 p-6 border-b border-brand-border">
-        <button onclick="backToCart()" class="p-2 hover:bg-brand-light rounded-full transition-colors" aria-label="Go back">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-brand-dark">
-            <line x1="19" y1="12" x2="5" y2="12"/>
-            <polyline points="12 19 5 12 12 5"/>
-          </svg>
-        </button>
-        <h3 class="font-display text-2xl text-brand-dark">Checkout</h3>
-      </div>
-      
-      <div class="flex-1 overflow-y-auto p-6">
-        <p class="text-sm text-brand-muted mb-4">Select Order Type</p>
-        
-        <div class="space-y-3 mb-8">
-          <div onclick="selectOrderType('pickup')" class="radio-option" data-type="pickup" role="radio" tabindex="0">
-            <div class="radio-dot"></div>
-            <div>
-              <p class="font-medium text-brand-dark">Pickup</p>
-              <p class="text-sm text-brand-muted">Collect from our cart location</p>
-            </div>
-          </div>
-          
-          <div onclick="selectOrderType('delivery')" class="radio-option" data-type="delivery" role="radio" tabindex="0">
-            <div class="radio-dot"></div>
-            <div>
-              <p class="font-medium text-brand-dark">Delivery</p>
-              <p class="text-sm text-brand-muted">Get it delivered to your doorstep</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Pickup Location (shown when pickup selected) -->
-        <div id="pickupInfo" class="hidden mb-6 p-4 bg-brand-light rounded-xl animate-fade-in">
-          <p class="text-sm text-brand-dark font-medium mb-3">Pickup Location</p>
-          <a href="https://maps.app.goo.gl/kiqJ2gdhNNmNhd5T9" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-brand-red hover:underline">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-              <circle cx="12" cy="10" r="3"/>
-            </svg>
-            View on Google Maps
-          </a>
-        </div>
-        
-        <!-- Delivery Note (shown when delivery selected) -->
-        <div id="deliveryInfo" class="hidden mb-6 p-4 bg-brand-light rounded-xl animate-fade-in">
-          <div class="flex items-start gap-3">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-brand-red flex-shrink-0 mt-0.5">
-              <circle cx="12" cy="12" r="10"/>
-              <line x1="12" y1="8" x2="12" y2="12"/>
-              <line x1="12" y1="16" x2="12.01" y2="16"/>
-            </svg>
-            <p class="text-sm text-brand-dark">Delivery charges extra as per the location</p>
-          </div>
-        </div>
-        
-        <!-- Customer Details Form -->
-        <div id="customerForm" class="hidden animate-fade-in">
-          <p class="text-sm text-brand-muted mb-4">Your Details</p>
-          
-          <div class="space-y-4">
-            <input type="text" id="customerName" class="form-input" placeholder="Your Name *" required>
-            <input type="tel" id="customerPhone" class="form-input" placeholder="Phone Number *" required>
-            
-            <!-- Address field only for delivery -->
-            <div id="addressField" class="hidden">
-              <textarea id="customerAddress" class="form-input resize-none" rows="3" placeholder="Delivery Address *"></textarea>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="p-6 border-t border-brand-border bg-white">
-        <div class="flex justify-between items-center mb-6">
-          <span class="text-brand-muted">Total</span>
-          <span class="font-display text-2xl text-brand-dark" id="checkoutTotal">Rs 0</span>
-        </div>
-        <button onclick="sendWhatsAppOrder()" id="whatsappBtn" class="btn-primary w-full" disabled>
-          Order via WhatsApp
-        </button>
-      </div>
-    </div>
-  </aside>
-  
-  <!-- WhatsApp Floating Button -->
-  <a href="https://wa.me/919824847345?text=Hi%20Bunty%20Kaka!" 
-     target="_blank" 
-     rel="noopener noreferrer"
-     class="fixed bottom-6 right-6 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 transition-all z-40"
-     aria-label="Chat on WhatsApp">
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-    </svg>
-  </a>
-  
-  <script>
-    // ============================================
-    // DATA
-    // ============================================
-    
-    const menuItems = [
-      {
-        id: 1,
-        name: 'Bateka Bhungla',
-        description: 'Signature spicy potato cooked in iron kadai with Kathiawadi spices',
-        price: 40,
-        image: 'https://z-cdn-media.chatglm.cn/files/0f3033a1-23bc-4bdf-87b4-2b55ea9c861a.png?auth_key=1873079545-5db6ed767255465a84d6d0fa54b5d7e8-0-00eb82b1ff88015bc124f902da1cbd4f',
-        spice: 3,
-        badge: 'Best Seller'
-      },
-      {
-        id: 2,
-        name: 'Bhungla Packet',
-        description: 'Quick bite-sized portions for on-the-go snacking',
-        price: 10,
-        image: 'https://z-cdn-media.chatglm.cn/files/59d4d2b7-0478-40dc-bf8c-45498f0e7d1f.png?auth_key=1873079545-8d884bc62d2a4b60b5d246095ea6bafb-0-fdf46b960866a9d06259be7bc862ffcb',
-        spice: 2,
-        badge: null
-      },
-      {
-        id: 3,
-        name: 'Dry Bhungla',
-        description: 'Crispy roasted potatoes with extra spice coating',
-        price: 50,
-        image: 'https://z-cdn-media.chatglm.cn/files/2b9c3848-86ca-4306-b3cd-8afacf133d59.png?auth_key=1873079545-1b8bf09abc7641d5905977df01ca4764-0-020fb015a711ab7ea512fa54ef6a8069',
-        spice: 3,
-        badge: null
-      },
-      {
-        id: 4,
-        name: 'Spicy Bhungla',
-        description: 'Extra fiery version with special red chili blend',
-        price: 60,
-        image: 'https://z-cdn-media.chatglm.cn/files/0f3033a1-23bc-4bdf-87b4-2b55ea9c861a.png?auth_key=1873079545-5db6ed767255465a84d6d0fa54b5d7e8-0-00eb82b1ff88015bc124f902da1cbd4f',
-        spice: 4,
-        badge: 'Spicy'
-      },
-      {
-        id: 5,
-        name: 'Kathiawadi Mix',
-        description: 'Combination platter with bhungla, chutney, salad and chaas',
-        price: 70,
-        image: 'https://z-cdn-media.chatglm.cn/files/59d4d2b7-0478-40dc-bf8c-45498f0e7d1f.png?auth_key=1873079545-8d884bc62d2a4b60b5d246095ea6bafb-0-fdf46b960866a9d06259be7bc862ffcb',
-        spice: 3,
-        badge: 'Value'
-      },
-      {
-        id: 6,
-        name: 'Special Chaas',
-        description: 'Refreshing buttermilk with roasted cumin and coriander',
-        price: 30,
-        image: 'https://z-cdn-media.chatglm.cn/files/2b9c3848-86ca-4306-b3cd-8afacf133d59.png?auth_key=1873079545-1b8bf09abc7641d5905977df01ca4764-0-020fb015a711ab7ea512fa54ef6a8069',
-        spice: 0,
-        badge: null
-      },
-      {
-        id: 7,
-        name: 'Chutney',
-        description: 'Fresh homemade garlic and chili chutney',
-        price: 40,
-        image: 'https://z-cdn-media.chatglm.cn/files/0f3033a1-23bc-4bdf-87b4-2b55ea9c861a.png?auth_key=1873079545-5db6ed767255465a84d6d0fa54b5d7e8-0-00eb82b1ff88015bc124f902da1cbd4f',
-        spice: 4,
-        badge: null
-      },
-      {
-        id: 8,
-        name: 'Salad',
-        description: 'Fresh onion, tomato and cucumber with lemon dressing',
-        price: 40,
-        image: 'https://z-cdn-media.chatglm.cn/files/59d4d2b7-0478-40dc-bf8c-45498f0e7d1f.png?auth_key=1873079545-8d884bc62d2a4b60b5d246095ea6bafb-0-fdf46b960866a9d06259be7bc862ffcb',
-        spice: 1,
-        badge: null
-      },
-      {
-        id: 9,
-        name: 'Chaas',
-        description: 'Traditional Gujarati buttermilk',
-        price: 20,
-        image: 'https://z-cdn-media.chatglm.cn/files/2b9c3848-86ca-4306-b3cd-8afacf133d59.png?auth_key=1873079545-1b8bf09abc7641d5905977df01ca4764-0-020fb015a711ab7ea512fa54ef6a8069',
-        spice: 0,
-        badge: null
-      }
-    ];
-    
-    // ============================================
-    // STATE
-    // ============================================
-    
-    let cart = [];
-    let orderType = null;
-    
-    // ============================================
-    // INITIALIZATION
-    // ============================================
-    
-    document.addEventListener('DOMContentLoaded', function() {
-      renderMenu();
-      initScrollReveal();
-    });
-    
-    // ============================================
-    // RENDER FUNCTIONS
-    // ============================================
-    
-    function renderMenu() {
-      const grid = document.getElementById('menuGrid');
-      if (!grid) return;
-      
-      grid.innerHTML = menuItems.map((item, i) => `
-        <article class="menu-card reveal" style="transition-delay: ${i * 0.05}s">
-          <div class="relative aspect-[4/3] overflow-hidden">
-            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
-            ${item.badge ? `<span class="absolute top-3 left-3 badge">${item.badge}</span>` : ''}
-          </div>
-          <div class="p-5">
-            <div class="flex items-start justify-between gap-4 mb-2">
-              <h3 class="font-display text-lg text-brand-dark">${item.name}</h3>
-              <p class="font-display text-lg text-brand-red whitespace-nowrap">Rs ${item.price}</p>
-            </div>
-            <p class="text-sm text-brand-muted mb-4 line-clamp-2">${item.description}</p>
-            <div class="flex items-center justify-between">
-              <div class="flex gap-1">
-                ${[1,2,3,4].map(n => `<span class="spice-dot ${n <= item.spice ? 'active' : ''}"></span>`).join('')}
-              </div>
-              <button onclick="addToCart(${item.id})" class="text-sm font-medium text-brand-dark hover:text-brand-red transition-colors">
-                + Add
-              </button>
-            </div>
-          </div>
-        </article>
-      `).join('');
-    }
-    
-    function renderCart() {
-      const container = document.getElementById('cartItemsContainer');
-      const subtotal = document.getElementById('cartSubtotal');
-      const badge = document.getElementById('cartBadge');
-      const checkoutBtn = document.getElementById('checkoutBtn');
-      
-      const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-      const count = cart.reduce((sum, item) => sum + item.qty, 0);
-      
-      // Update badge
-      if (badge) {
-        badge.textContent = count;
-        badge.style.opacity = count > 0 ? '1' : '0';
-        badge.style.transform = count > 0 ? 'scale(1)' : 'scale(0)';
-      }
-      
-      // Update checkout button
-      if (checkoutBtn) {
-        checkoutBtn.disabled = cart.length === 0;
-      }
-      
-      // Update subtotal
-      if (subtotal) {
-        subtotal.textContent = `Rs ${total}`;
-      }
-      
-      // Render cart items
-      if (!container) return;
-      
-      if (cart.length === 0) {
-        container.innerHTML = `
-          <div class="flex flex-col items-center justify-center h-full text-center">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-brand-border mb-4">
-              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-              <line x1="3" y1="6" x2="21" y2="6"/>
-              <path d="M16 10a4 4 0 0 1-8 0"/>
-            </svg>
-            <p class="text-brand-muted">Your cart is empty</p>
-            <button onclick="closeCart(); scrollToMenu();" class="btn-secondary mt-4 text-sm">Browse Menu</button>
-          </div>
-        `;
-        return;
-      }
-      
-      container.innerHTML = cart.map(item => `
-        <div class="flex gap-4 pb-4 mb-4 border-b border-brand-border last:border-0">
-          <img src="${item.image}" alt="${item.name}" class="w-20 h-20 rounded-xl object-cover">
-          <div class="flex-1">
-            <h4 class="font-medium text-brand-dark">${item.name}</h4>
-            <p class="text-sm text-brand-muted">Rs ${item.price}</p>
-            <div class="flex items-center gap-3 mt-2">
-              <button onclick="updateQty(${item.id}, -1)" class="qty-btn" aria-label="Decrease quantity">-</button>
-              <span class="text-brand-dark font-medium w-6 text-center">${item.qty}</span>
-              <button onclick="updateQty(${item.id}, 1)" class="qty-btn" aria-label="Increase quantity">+</button>
-            </div>
-          </div>
-          <button onclick="removeFromCart(${item.id})" class="text-brand-muted hover:text-brand-red transition-colors self-start" aria-label="Remove item">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <polyline points="3 6 5 6 21 6"/>
-              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-            </svg>
-          </button>
-        </div>
-      `).join('');
-    }
-    
-    // ============================================
-    // CART FUNCTIONS
-    // ============================================
-    
-    function addToCart(id) {
-      const item = menuItems.find(i => i.id === id);
-      if (!item) return;
-      
-      const existing = cart.find(i => i.id === id);
-      if (existing) {
-        existing.qty += 1;
-      } else {
-        cart.push({
-          id: item.id,
-          name: item.name,
-          price: item.price,
-          image: item.image,
-          qty: 1
+    </aside>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script>
+        // Menu Data
+        const menuItems = [
+            // Bateta Bhungla
+            {
+                id: 1,
+                name: "Bateta Bhungla + 12 No. Bhungla",
+                description: "Soft on spice, strong on sweet",
+                price: 60,
+                category: "bhungla",
+                spiceLevel: 1,
+                spiceText: "Kids Level"
+            },
+            {
+                id: 2,
+                name: "Bateta Bhungla + 12 No. Bhungla",
+                description: "Where sugar kisses spice",
+                price: 60,
+                category: "bhungla",
+                spiceLevel: 2,
+                spiceText: "Medium"
+            },
+            {
+                id: 3,
+                name: "Spicy Bateta Bhungla + 12 No. Bhungla",
+                description: "Spicy lover paradise",
+                price: 60,
+                category: "bhungla",
+                spiceLevel: 3,
+                spiceText: "Spicy"
+            },
+            {
+                id: 4,
+                name: "Super Spicy Bateta Bhungla + 12 No. Bhungla",
+                description: "Feel the burn, love the bite",
+                price: 60,
+                category: "bhungla",
+                spiceLevel: 4,
+                spiceText: "Extra Spicy"
+            },
+            {
+                id: 5,
+                name: "Rocket Spicy Bateta Bhungla + 12 No. Bhungla",
+                description: "Not just spicy, it's a survival test",
+                price: 70,
+                category: "bhungla",
+                spiceLevel: 5,
+                spiceText: "Extreme"
+            },
+            {
+                id: 6,
+                name: "Swaminarayan Bateta Bhungla + 12 No. Bhungla",
+                description: "No onion, No garlic",
+                price: 60,
+                category: "bhungla",
+                spiceLevel: 2,
+                spiceText: "Medium (Jain)"
+            },
+            {
+                id: 7,
+                name: "Extra Bhungla - 12 No.",
+                description: "Extra crispy bhungla",
+                price: 10,
+                category: "bhungla",
+                spiceLevel: 0,
+                spiceText: ""
+            },
+            // Special Snacks
+            {
+                id: 8,
+                name: "Chanamath",
+                description: "Chana + Math + Bateta",
+                price: 60,
+                category: "snacks",
+                spiceLevel: 2,
+                spiceText: "Medium"
+            },
+            {
+                id: 9,
+                name: "Dahi Vada",
+                description: "Jain + Swaminarayan available",
+                price: 70,
+                category: "snacks",
+                spiceLevel: 0,
+                spiceText: ""
+            },
+            {
+                id: 10,
+                name: "Mix Plate",
+                description: "Chana Math + Bateta Bhungla + Ghanthiya",
+                price: 100,
+                category: "snacks",
+                spiceLevel: 0,
+                spiceText: "Flavorful Snack"
+            },
+            {
+                id: 11,
+                name: "Extra Sing",
+                description: "Extra sev/bhujia topping",
+                price: 10,
+                category: "snacks",
+                spiceLevel: 0,
+                spiceText: ""
+            },
+            // Drinks
+            {
+                id: 12,
+                name: "Buttermilk (Fast Special)",
+                description: "Refreshing 250ml",
+                price: 20,
+                category: "drinks",
+                spiceLevel: 0,
+                spiceText: ""
+            },
+            {
+                id: 13,
+                name: "Ghorvu",
+                description: "Traditional Village Style Thick Buttermilk - 250ml",
+                price: 40,
+                category: "drinks",
+                spiceLevel: 0,
+                spiceText: ""
+            }
+        ];
+
+        // Cart State
+        let cart = [];
+        let orderStep = 1; // 1: Cart, 2: Details, 3: Summary
+
+        // DOM Elements - Initialize after DOM is ready
+        let menuGrid, cartContent, cartFooter, cartSidebar, cartOverlay, toast;
+        let navCartBadge, floatingCart, floatingCartBadge;
+
+        // Initialize everything after DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get DOM elements
+            menuGrid = document.getElementById('menuGrid');
+            cartContent = document.getElementById('cartContent');
+            cartFooter = document.getElementById('cartFooter');
+            cartSidebar = document.getElementById('cartSidebar');
+            cartOverlay = document.getElementById('cartOverlay');
+            toast = document.getElementById('toast');
+            navCartBadge = document.getElementById('navCartBadge');
+            floatingCart = document.getElementById('floatingCart');
+            floatingCartBadge = document.getElementById('floatingCartBadge');
+
+            // Render menu
+            renderMenu();
+
+            // Initialize scroll reveal
+            initScrollReveal();
+
+            // Update cart UI
+            updateCartUI();
         });
-      }
-      
-      renderCart();
-      
-      // Animate badge
-      const badge = document.getElementById('cartBadge');
-      if (badge) {
-        badge.style.transform = 'scale(1.3)';
-        setTimeout(() => {
-          badge.style.transform = 'scale(1)';
-        }, 200);
-      }
-    }
-    
-    function updateQty(id, delta) {
-      const item = cart.find(i => i.id === id);
-      if (!item) return;
-      
-      item.qty += delta;
-      if (item.qty <= 0) {
-        removeFromCart(id);
-      } else {
-        renderCart();
-      }
-    }
-    
-    function removeFromCart(id) {
-      cart = cart.filter(i => i.id !== id);
-      renderCart();
-    }
-    
-    function openCart() {
-      document.getElementById('cartSidebar').classList.add('open');
-      document.getElementById('cartOverlay').classList.add('open');
-      document.body.style.overflow = 'hidden';
-      
-      // Reset to step 1
-      showCartStep(1);
-      renderCart();
-    }
-    
-    function closeCart() {
-      document.getElementById('cartSidebar').classList.remove('open');
-      document.getElementById('cartOverlay').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    
-    function showCartStep(step) {
-      const step1 = document.getElementById('cartStep1');
-      const step2 = document.getElementById('cartStep2');
-      
-      if (step === 1) {
-        step1.classList.remove('hidden');
-        step2.classList.add('hidden');
-      } else {
-        step1.classList.add('hidden');
-        step2.classList.remove('hidden');
-      }
-    }
-    
-    function proceedToCheckout() {
-      if (cart.length === 0) return;
-      
-      showCartStep(2);
-      
-      // Update checkout total
-      const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-      document.getElementById('checkoutTotal').textContent = `Rs ${total}`;
-      
-      // Reset form state
-      orderType = null;
-      document.querySelectorAll('.radio-option').forEach(el => el.classList.remove('selected'));
-      document.getElementById('pickupInfo').classList.add('hidden');
-      document.getElementById('deliveryInfo').classList.add('hidden');
-      document.getElementById('customerForm').classList.add('hidden');
-      document.getElementById('addressField').classList.add('hidden');
-      document.getElementById('whatsappBtn').disabled = true;
-    }
-    
-    function backToCart() {
-      showCartStep(1);
-    }
-    
-    function selectOrderType(type) {
-      orderType = type;
-      
-      // Update radio UI
-      document.querySelectorAll('.radio-option').forEach(el => {
-        el.classList.toggle('selected', el.dataset.type === type);
-      });
-      
-      // Show/hide info sections
-      const pickupInfo = document.getElementById('pickupInfo');
-      const deliveryInfo = document.getElementById('deliveryInfo');
-      const customerForm = document.getElementById('customerForm');
-      const addressField = document.getElementById('addressField');
-      
-      pickupInfo.classList.toggle('hidden', type !== 'pickup');
-      deliveryInfo.classList.toggle('hidden', type !== 'delivery');
-      customerForm.classList.remove('hidden');
-      addressField.classList.toggle('hidden', type !== 'delivery');
-      
-      validateForm();
-    }
-    
-    function validateForm() {
-      const name = document.getElementById('customerName').value.trim();
-      const phone = document.getElementById('customerPhone').value.trim();
-      const address = document.getElementById('customerAddress').value.trim();
-      
-      const whatsappBtn = document.getElementById('whatsappBtn');
-      let isValid = name && phone && orderType;
-      
-      if (orderType === 'delivery') {
-        isValid = isValid && address;
-      }
-      
-      whatsappBtn.disabled = !isValid;
-    }
-    
-    // Add input listeners for validation
-    document.addEventListener('DOMContentLoaded', function() {
-      ['customerName', 'customerPhone', 'customerAddress'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-          el.addEventListener('input', validateForm);
+
+        // Render Menu
+        function renderMenu(category = 'all') {
+            if (!menuGrid) return;
+            
+            const filtered = category === 'all' 
+                ? menuItems 
+                : menuItems.filter(item => item.category === category);
+
+            menuGrid.innerHTML = filtered.map((item, index) => `
+                <div class="menu-card reveal" style="transition-delay: ${index * 0.1}s;" data-category="${item.category}">
+                    <div class="flex gap-4">
+                        <div class="w-24 h-24 rounded-xl img-placeholder flex-shrink-0 overflow-hidden">
+                            <!-- REPLACE: Add food item image here for ${item.name} -->
+                            <img src="https://z-cdn-media.chatglm.cn/files/f16c914a-c91a-41cb-9974-e8aae61517aa.jpeg?auth_key=1873520342-118af2c3b41e461f8f3b76efbfbabd46-0-0db4f69519c0b851bad034fb715c2eec" alt="${item.name}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-semibold text-[var(--fg)] leading-tight pr-2">${item.name}</h3>
+                                <span class="price-tag flex-shrink-0">₹${item.price}</span>
+                            </div>
+                            ${item.spiceLevel > 0 ? `
+                                <div class="flex items-center gap-2 mb-2">
+                                    <div class="spice-level">
+                                        ${[1,2,3,4,5].map(i => `
+                                            <span class="spice-icon ${i <= item.spiceLevel ? '' : 'inactive'}">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                                </svg>
+                                            </span>
+                                        `).join('')}
+                                    </div>
+                                    ${item.spiceText ? `<span class="text-xs text-[var(--muted)]">${item.spiceText}</span>` : ''}
+                                </div>
+                            ` : ''}
+                            <p class="text-sm text-[var(--fg-light)] mb-3">${item.description}</p>
+                            <div class="flex items-center justify-between">
+                                ${getCartControls(item)}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Trigger reveal animation
+            setTimeout(() => {
+                document.querySelectorAll('.menu-card.reveal').forEach(el => el.classList.add('active'));
+            }, 100);
         }
-      });
-    });
-    
-    function sendWhatsAppOrder() {
-      const name = document.getElementById('customerName').value.trim();
-      const phone = document.getElementById('customerPhone').value.trim();
-      const address = document.getElementById('customerAddress').value.trim();
-      
-      if (!name || !phone || !orderType) return;
-      if (orderType === 'delivery' && !address) return;
-      
-      // Build order text
-      let orderText = `*New Order - ${orderType.toUpperCase()}*\n\n`;
-      orderText += `*Customer:* ${name}\n`;
-      orderText += `*Phone:* ${phone}\n`;
-      
-      if (orderType === 'delivery') {
-        orderText += `*Address:* ${address}\n`;
-      }
-      
-      orderText += `\n*Order Details:*\n`;
-      
-      cart.forEach(item => {
-        orderText += `- ${item.name} x${item.qty} = Rs ${item.price * item.qty}\n`;
-      });
-      
-      const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-      orderText += `\n*Total: Rs ${total}*\n`;
-      
-      if (orderType === 'delivery') {
-        orderText += `\n_Note: Delivery charges extra as per location_\n`;
-      }
-      
-      // Encode for WhatsApp URL
-      const encodedText = encodeURIComponent(orderText);
-      const whatsappUrl = `https://wa.me/919824847345?text=${encodedText}`;
-      
-      window.open(whatsappUrl, '_blank');
-    }
-    
-    // ============================================
-    // NAVIGATION
-    // ============================================
-    
-    function toggleMobileMenu() {
-      const menu = document.getElementById('mobileMenu');
-      const isOpen = !menu.classList.contains('hidden');
-      
-      if (isOpen) {
-        menu.style.opacity = '0';
-        setTimeout(() => menu.classList.add('hidden'), 300);
-      } else {
-        menu.classList.remove('hidden');
-        setTimeout(() => menu.style.opacity = '1', 10);
-      }
-    }
-    
-    function scrollToMenu() {
-      document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
-    }
-    
-    // ============================================
-    // SCROLL REVEAL
-    // ============================================
-    
-    function initScrollReveal() {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-          }
+
+        // Get Cart Controls for Menu Item
+        function getCartControls(item) {
+            const cartItem = cart.find(c => c.id === item.id);
+            if (cartItem) {
+                return `
+                    <div class="qty-control">
+                        <button class="qty-btn minus" onclick="updateQuantity(${item.id}, -1)" aria-label="Decrease quantity">-</button>
+                        <span class="qty-display">${cartItem.quantity}</span>
+                        <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)" aria-label="Increase quantity">+</button>
+                    </div>
+                `;
+            }
+            return `
+                <button onclick="addToCart(${item.id})" class="btn-primary text-sm py-2 px-4">
+                    Add to Order
+                </button>
+            `;
+        }
+
+        // Filter Category
+        function filterCategory(category) {
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.textContent.toLowerCase().includes(category) || (category === 'all' && tab.textContent.includes('All'))) {
+                    tab.classList.add('active');
+                }
+            });
+            renderMenu(category);
+        }
+
+        // Add to Cart
+        function addToCart(id) {
+            const item = menuItems.find(i => i.id === id);
+            if (!item) return;
+
+            const existingItem = cart.find(c => c.id === id);
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...item, quantity: 1 });
+            }
+
+            updateCartUI();
+            renderMenu(document.querySelector('.category-tab.active')?.textContent.toLowerCase().includes('bhungla') ? 'bhungla' : 
+                       document.querySelector('.category-tab.active')?.textContent.toLowerCase().includes('snacks') ? 'snacks' :
+                       document.querySelector('.category-tab.active')?.textContent.toLowerCase().includes('drinks') ? 'drinks' : 'all');
+            showToast(`${item.name} added to order`);
+        }
+
+        // Update Quantity
+        function updateQuantity(id, change) {
+            const itemIndex = cart.findIndex(c => c.id === id);
+            if (itemIndex === -1) return;
+
+            cart[itemIndex].quantity += change;
+
+            if (cart[itemIndex].quantity <= 0) {
+                cart.splice(itemIndex, 1);
+            }
+
+            updateCartUI();
+            renderMenu(document.querySelector('.category-tab.active')?.textContent.toLowerCase().includes('bhungla') ? 'bhungla' : 
+                       document.querySelector('.category-tab.active')?.textContent.toLowerCase().includes('snacks') ? 'snacks' :
+                       document.querySelector('.category-tab.active')?.textContent.toLowerCase().includes('drinks') ? 'drinks' : 'all');
+        }
+
+        // Update Cart UI
+        function updateCartUI() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            // Update badges
+            if (navCartBadge) {
+                if (totalItems > 0) {
+                    navCartBadge.textContent = totalItems;
+                    navCartBadge.classList.remove('hidden');
+                } else {
+                    navCartBadge.classList.add('hidden');
+                }
+            }
+
+            if (floatingCartBadge) {
+                if (totalItems > 0) {
+                    floatingCartBadge.textContent = totalItems;
+                    floatingCartBadge.classList.remove('hidden');
+                    floatingCart.classList.remove('hidden');
+                } else {
+                    floatingCartBadge.classList.add('hidden');
+                    floatingCart.classList.add('hidden');
+                }
+            }
+
+            renderCartContent();
+        }
+
+        // Render Cart Content
+        function renderCartContent() {
+            if (!cartContent || !cartFooter) return;
+            
+            if (cart.length === 0) {
+                cartContent.innerHTML = `
+                    <div class="flex flex-col items-center justify-center h-full p-8 text-center">
+                        <div class="w-24 h-24 bg-[var(--bg-warm)] rounded-full flex items-center justify-center mb-4">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.5">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="m1 1 4 4h16l-2.5 9H6.5"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-semibold text-[var(--fg)] mb-2">Your cart is empty</h3>
+                        <p class="text-[var(--muted)] text-sm">Add some delicious items to get started</p>
+                    </div>
+                `;
+                cartFooter.classList.add('hidden');
+                return;
+            }
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            if (orderStep === 1) {
+                // Cart View
+                cartContent.innerHTML = `
+                    <div class="p-4 space-y-4">
+                        ${cart.map(item => `
+                            <div class="flex gap-4 p-4 bg-[var(--bg-warm)] rounded-xl">
+                                <div class="w-16 h-16 rounded-lg img-placeholder overflow-hidden flex-shrink-0">
+                                    <img src="https://z-cdn-media.chatglm.cn/files/f16c914a-c91a-41cb-9974-e8aae61517aa.jpeg?auth_key=1873520342-118af2c3b41e461f8f3b76efbfbabd46-0-0db4f69519c0b851bad034fb715c2eec" alt="${item.name}" class="w-full h-full object-cover">
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-medium text-[var(--fg)] text-sm leading-tight">${item.name}</h4>
+                                    <p class="text-[var(--accent)] font-semibold mt-1">₹${item.price}</p>
+                                </div>
+                                <div class="qty-control">
+                                    <button class="qty-btn minus" onclick="updateQuantity(${item.id}, -1)" aria-label="Decrease">-</button>
+                                    <span class="qty-display">${item.quantity}</span>
+                                    <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)" aria-label="Increase">+</button>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+
+                cartFooter.classList.remove('hidden');
+                cartFooter.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="flex justify-between text-lg">
+                            <span class="text-[var(--fg-light)]">Subtotal</span>
+                            <span class="font-bold text-[var(--fg)]">₹${subtotal}</span>
+                        </div>
+                        <p class="text-xs text-[var(--muted)]">Parcel charges (₹10) and delivery charges (if applicable) will be added</p>
+                        <button onclick="goToStep(2)" class="btn-primary w-full">
+                            Continue to Order
+                        </button>
+                    </div>
+                `;
+            } else if (orderStep === 2) {
+                // Order Details Form
+                cartContent.innerHTML = `
+                    <div class="p-6 space-y-5">
+                        <div class="step-indicator">
+                            <div class="step-dot completed"></div>
+                            <div class="step-dot active"></div>
+                            <div class="step-dot"></div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-[var(--fg)] mb-2">Your Name *</label>
+                            <input type="text" id="customerName" class="form-input" placeholder="Enter your name" required>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-[var(--fg)] mb-2">Phone Number *</label>
+                            <input type="tel" id="customerPhone" class="form-input" placeholder="Enter your phone number" pattern="[0-9]{10}" required>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-[var(--fg)] mb-2">Order Type *</label>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="radio-option" onclick="selectOrderType('pickup')" id="pickupOption">
+                                    <div class="radio-circle"></div>
+                                    <div>
+                                        <span class="font-medium text-[var(--fg)]">Pickup</span>
+                                        <span class="block text-xs text-[var(--muted)]">Collect from shop</span>
+                                    </div>
+                                </div>
+                                <div class="radio-option" onclick="selectOrderType('delivery')" id="deliveryOption">
+                                    <div class="radio-circle"></div>
+                                    <div>
+                                        <span class="font-medium text-[var(--fg)]">Delivery</span>
+                                        <span class="block text-xs text-[var(--muted)]">Home delivery</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="addressSection" class="hidden">
+                            <label class="block text-sm font-medium text-[var(--fg)] mb-2">Delivery Address *</label>
+                            <textarea id="customerAddress" class="form-input" rows="3" placeholder="Enter your full address"></textarea>
+                            <p class="text-xs text-[var(--accent)] mt-2">Extra delivery charges will apply based on location</p>
+                        </div>
+                        
+                        <div id="pickupSection" class="hidden">
+                            <p class="text-sm text-[var(--fg-light)] mb-3">Pick up your order from our location:</p>
+                            <a href="https://maps.app.goo.gl/TRxf49KJaL5XdeRQ7" target="_blank" class="location-btn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                View Location on Map
+                            </a>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-[var(--fg)] mb-2">Special Instructions</label>
+                            <textarea id="customerNotes" class="form-input" rows="2" placeholder="Any special requests? (e.g., less spicy, extra chutney)"></textarea>
+                        </div>
+                    </div>
+                `;
+
+                cartFooter.innerHTML = `
+                    <div class="flex gap-3">
+                        <button onclick="goToStep(1)" class="btn-secondary flex-1">
+                            Back
+                        </button>
+                        <button onclick="goToStep(3)" class="btn-primary flex-1">
+                            Review Order
+                        </button>
+                    </div>
+                `;
+            } else if (orderStep === 3) {
+                // Order Summary
+                const orderType = document.getElementById('pickupOption')?.classList.contains('selected') ? 'pickup' : 'delivery';
+                const name = document.getElementById('customerName')?.value || '';
+                const phone = document.getElementById('customerPhone')?.value || '';
+                const address = document.getElementById('customerAddress')?.value || '';
+                const notes = document.getElementById('customerNotes')?.value || '';
+                
+                const parcelCharge = 10;
+                const deliveryCharge = orderType === 'delivery' ? 30 : 0; // Assuming 30 for delivery
+                const total = subtotal + parcelCharge + deliveryCharge;
+
+                cartContent.innerHTML = `
+                    <div class="p-6 space-y-5">
+                        <div class="step-indicator">
+                            <div class="step-dot completed"></div>
+                            <div class="step-dot completed"></div>
+                            <div class="step-dot active"></div>
+                        </div>
+                        
+                        <div class="bg-[var(--bg-warm)] rounded-xl p-4">
+                            <h4 class="font-semibold text-[var(--fg)] mb-3">Order Summary</h4>
+                            <div class="space-y-2 text-sm">
+                                ${cart.map(item => `
+                                    <div class="flex justify-between">
+                                        <span class="text-[var(--fg-light)]">${item.name} x ${item.quantity}</span>
+                                        <span class="font-medium">₹${item.price * item.quantity}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div class="border-t border-[var(--border)] mt-3 pt-3 space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span class="text-[var(--fg-light)]">Subtotal</span>
+                                    <span>₹${subtotal}</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-[var(--fg-light)]">Parcel Charges</span>
+                                    <span>₹${parcelCharge}</span>
+                                </div>
+                                ${orderType === 'delivery' ? `
+                                    <div class="flex justify-between">
+                                        <span class="text-[var(--fg-light)]">Delivery Charges</span>
+                                        <span>₹${deliveryCharge}</span>
+                                    </div>
+                                ` : ''}
+                                <div class="flex justify-between text-lg font-bold pt-2 border-t border-[var(--border)]">
+                                    <span>Total</span>
+                                    <span class="text-[var(--accent)]">₹${total}</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-[var(--blue-light)] rounded-xl p-4">
+                            <h4 class="font-semibold text-[var(--fg)] mb-2">Customer Details</h4>
+                            <p class="text-sm text-[var(--fg-light)]"><strong>Name:</strong> ${name}</p>
+                            <p class="text-sm text-[var(--fg-light)]"><strong>Phone:</strong> ${phone}</p>
+                            <p class="text-sm text-[var(--fg-light)]"><strong>Order Type:</strong> ${orderType === 'pickup' ? 'Pickup' : 'Delivery'}</p>
+                            ${orderType === 'delivery' && address ? `<p class="text-sm text-[var(--fg-light)]"><strong>Address:</strong> ${address}</p>` : ''}
+                            ${notes ? `<p class="text-sm text-[var(--fg-light)]"><strong>Notes:</strong> ${notes}</p>` : ''}
+                        </div>
+                        
+                        <p class="text-xs text-center text-[var(--muted)]">
+                            Clicking "Confirm Order" will open WhatsApp with your order details. Send the message to complete your order.
+                        </p>
+                    </div>
+                `;
+
+                cartFooter.innerHTML = `
+                    <div class="flex gap-3">
+                        <button onclick="goToStep(2)" class="btn-secondary flex-1">
+                            Back
+                        </button>
+                        <button onclick="confirmOrder()" class="btn-primary flex-1">
+                            Confirm Order
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        // Order Type Selection
+        function selectOrderType(type) {
+            const pickupOption = document.getElementById('pickupOption');
+            const deliveryOption = document.getElementById('deliveryOption');
+            const addressSection = document.getElementById('addressSection');
+            const pickupSection = document.getElementById('pickupSection');
+
+            if (type === 'pickup') {
+                pickupOption.classList.add('selected');
+                deliveryOption.classList.remove('selected');
+                addressSection.classList.add('hidden');
+                pickupSection.classList.remove('hidden');
+            } else {
+                deliveryOption.classList.add('selected');
+                pickupOption.classList.remove('selected');
+                addressSection.classList.remove('hidden');
+                pickupSection.classList.add('hidden');
+            }
+        }
+
+        // Navigation Steps
+        function goToStep(step) {
+            if (step === 2) {
+                if (cart.length === 0) {
+                    showToast('Please add items to your cart first');
+                    return;
+                }
+            }
+            
+            if (step === 3) {
+                const name = document.getElementById('customerName')?.value;
+                const phone = document.getElementById('customerPhone')?.value;
+                const orderType = document.getElementById('pickupOption')?.classList.contains('selected') ? 'pickup' : 'delivery';
+                const address = document.getElementById('customerAddress')?.value;
+
+                if (!name || name.trim() === '') {
+                    showToast('Please enter your name');
+                    return;
+                }
+                if (!phone || phone.trim() === '' || phone.length < 10) {
+                    showToast('Please enter a valid phone number');
+                    return;
+                }
+                if (!document.getElementById('pickupOption').classList.contains('selected') && 
+                    !document.getElementById('deliveryOption').classList.contains('selected')) {
+                    showToast('Please select order type');
+                    return;
+                }
+                if (orderType === 'delivery' && (!address || address.trim() === '')) {
+                    showToast('Please enter your delivery address');
+                    return;
+                }
+            }
+            
+            orderStep = step;
+            renderCartContent();
+        }
+
+        // Confirm Order - WhatsApp
+        function confirmOrder() {
+            const name = document.getElementById('customerName')?.value || '';
+            const phone = document.getElementById('customerPhone')?.value || '';
+            const orderType = document.getElementById('pickupOption')?.classList.contains('selected') ? 'pickup' : 'delivery';
+            const address = document.getElementById('customerAddress')?.value || '';
+            const notes = document.getElementById('customerNotes')?.value || '';
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const parcelCharge = 10;
+            const deliveryCharge = orderType === 'delivery' ? 30 : 0;
+            const total = subtotal + parcelCharge + deliveryCharge;
+
+            let message = `*New Order - Bunty Kaka Bhavanagri*\n\n`;
+            message += `*Customer Details:*\n`;
+            message += `Name: ${name}\n`;
+            message += `Phone: ${phone}\n`;
+            message += `Order Type: ${orderType === 'pickup' ? 'Pickup' : 'Delivery'}\n`;
+            if (orderType === 'delivery' && address) {
+                message += `Address: ${address}\n`;
+            }
+            message += `\n*Order Items:*\n`;
+            cart.forEach(item => {
+                message += `- ${item.name} x ${item.quantity} = ₹${item.price * item.quantity}\n`;
+            });
+            message += `\n*Bill Summary:*\n`;
+            message += `Subtotal: ₹${subtotal}\n`;
+            message += `Parcel Charges: ₹${parcelCharge}\n`;
+            if (orderType === 'delivery') {
+                message += `Delivery Charges: ₹${deliveryCharge}\n`;
+            }
+            message += `*Total: ₹${total}*\n`;
+            if (notes) {
+                message += `\n*Special Instructions:*\n${notes}\n`;
+            }
+            message += `\nThank you for ordering!`;
+
+            const whatsappUrl = `https://wa.me/919824847345?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+
+            // Reset cart after order
+            setTimeout(() => {
+                cart = [];
+                orderStep = 1;
+                updateCartUI();
+                closeCart();
+                showToast('Order placed successfully!');
+            }, 1000);
+        }
+
+        // Open Cart
+        function openCart() {
+            if (cartSidebar && cartOverlay) {
+                cartSidebar.classList.add('open');
+                cartOverlay.classList.add('open');
+                document.body.style.overflow = 'hidden';
+                orderStep = 1;
+                renderCartContent();
+            }
+        }
+
+        // Close Cart
+        function closeCart() {
+            if (cartSidebar && cartOverlay) {
+                cartSidebar.classList.remove('open');
+                cartOverlay.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Show Toast
+        function showToast(message) {
+            if (toast) {
+                toast.textContent = message;
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        // Scroll Reveal
+        function initScrollReveal() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        // Keyboard Navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeCart();
+            }
         });
-      }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      });
-      
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    }
-    
-    // ============================================
-    // KEYBOARD
-    // ============================================
-    
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        if (document.getElementById('cartSidebar').classList.contains('open')) {
-          closeCart();
-        }
-        if (!document.getElementById('mobileMenu').classList.contains('hidden')) {
-          toggleMobileMenu();
-        }
-      }
-    });
-  </script>
+    </script>
 </body>
 </html>
