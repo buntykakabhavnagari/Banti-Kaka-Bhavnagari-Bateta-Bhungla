@@ -1,1671 +1,886 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bunty Kaka Bhavanagri | Authentic Bhavnagari Taste</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Bunty Kaka Bhavnagari | Premium Street Food</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#FAFAFA',
+                        surface: '#FFFFFF',
+                        text: '#171717',
+                        muted: '#737373',
+                        accent: '#F97316', // Vibrant Orange
+                        secondary: '#38BDF8', // Light Blue
+                        border: '#E5E5E5',
+                        success: '#22C55E'
+                    },
+                    fontFamily: {
+                        serif: ['Instrument Serif', 'serif'],
+                        sans: ['Geist', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        :root {
-            --bg: #FFF9F5;
-            --bg-warm: #FEF3E8;
-            --fg: #3D2314;
-            --fg-light: #6B4C35;
-            --accent: #E86A33;
-            --accent-light: #FFEEE5;
-            --accent-dark: #C8521E;
-            --blue: #4A90A4;
-            --blue-light: #E8F4F8;
-            --card: #FFFFFF;
-            --border: #E8DDD4;
-            --muted: #A89080;
-            --success: #4A9F6E;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        /* --- Base & Resets --- */
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'DM Sans', sans-serif;
-            background: var(--bg);
-            color: var(--fg);
+            font-family: 'Geist', sans-serif;
+            background-color: #FAFAFA;
+            color: #171717;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-        }
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #E5E5E5; border-radius: 20px; }
+        ::-webkit-scrollbar-thumb:hover { background: #F97316; }
 
-        /* Background Pattern */
-        .pattern-bg {
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(232, 106, 51, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(74, 144, 164, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(232, 106, 51, 0.03) 0%, transparent 70%);
+        /* --- Advanced Animations --- */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); filter: blur(5px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
-
-        /* Floating Elements Animation */
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-        }
-
-        @keyframes floatReverse {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(-5deg); }
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(232, 106, 51, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(232, 106, 51, 0.5); }
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
         }
 
         @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
 
-        @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        .animate-fade-up {
+            opacity: 0;
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .animate-float { animation: float 6s ease-in-out infinite; }
-        .animate-float-reverse { animation: floatReverse 5s ease-in-out infinite; }
-        .animate-slide-up { animation: slideUp 0.6s ease-out forwards; }
-        .animate-scale-in { animation: scaleIn 0.4s ease-out forwards; }
+        
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
 
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-warm);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent);
-            border-radius: 4px;
-        }
-
-        /* Button Styles */
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
-            color: white;
-            padding: 12px 28px;
-            border-radius: 50px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(232, 106, 51, 0.4);
-        }
-
-        .btn-primary:active {
-            transform: translateY(0);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--accent);
-            padding: 12px 28px;
-            border-radius: 50px;
-            font-weight: 600;
-            border: 2px solid var(--accent);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-secondary:hover {
-            background: var(--accent);
-            color: white;
-        }
-
-        /* Menu Card */
+        /* --- Component Styles --- */
+        
+        /* Card Hover Tilt Effect */
         .menu-card {
-            background: var(--card);
-            border-radius: 20px;
-            padding: 24px;
-            border: 1px solid var(--border);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
         }
-
-        .menu-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--blue));
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .menu-card:hover::before {
-            transform: scaleX(1);
-        }
-
         .menu-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(61, 35, 20, 0.1);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
         }
+
+        /* Spice Meter */
+        .spice-track {
+            background: #F5F5F5;
+            height: 4px;
+            width: 100%;
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+        }
+        .spice-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #F97316, #EF4444);
+            border-radius: 2px;
+            transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: #171717;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 0; height: 100%;
+            background: #F97316;
+            z-index: 0;
+            transition: width 0.3s ease;
+        }
+        .btn-primary span { position: relative; z-index: 1; }
+        .btn-primary:hover::after { width: 100%; }
+
+        .btn-outline {
+            border: 1px solid #171717;
+            color: #171717;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+        .btn-outline:hover {
+            background: #171717;
+            color: white;
+        }
+
+        /* Quantity Controller */
+        .qty-controller {
+            display: flex;
+            align-items: center;
+            border: 1px solid #E5E5E5;
+            border-radius: 999px;
+            overflow: hidden;
+            height: 36px;
+        }
+        .qty-btn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #737373;
+            transition: all 0.2s;
+            background: transparent;
+            cursor: pointer;
+        }
+        .qty-btn:hover { background: #F5F5F5; color: #F97316; }
+        .qty-val { width: 30px; text-align: center; font-weight: 600; font-size: 14px; }
 
         /* Cart Sidebar */
         .cart-sidebar {
             position: fixed;
             top: 0;
-            right: -450px;
-            width: 450px;
-            max-width: 100%;
+            right: 0;
+            width: 100%;
+            max-width: 480px;
             height: 100vh;
-            background: var(--card);
-            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
+            background: white;
             z-index: 1000;
-            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: -20px 0 60px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
         }
+        .cart-sidebar.open { transform: translateX(0); }
 
-        .cart-sidebar.open {
-            right: 0;
+        /* Background Shapes */
+        .shape-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.6;
         }
 
-        .cart-overlay {
+        /* Mobile Sticky Bar */
+        .mobile-bar {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(61, 35, 20, 0.5);
-            backdrop-filter: blur(4px);
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: white;
+            padding: 16px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
+            display: none;
+            border: 1px solid #F5F5F5;
         }
-
-        .cart-overlay.open {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Quantity Controls */
-        .qty-control {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: var(--bg-warm);
-            border-radius: 30px;
-            padding: 4px;
-        }
-
-        .qty-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: var(--accent);
-            color: white;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .qty-btn:hover {
-            background: var(--accent-dark);
-            transform: scale(1.1);
-        }
-
-        .qty-btn:active {
-            transform: scale(0.95);
-        }
-
-        .qty-btn.minus {
-            background: var(--border);
-            color: var(--fg);
-        }
-
-        .qty-btn.minus:hover {
-            background: var(--muted);
-        }
-
-        .qty-display {
-            min-width: 30px;
-            text-align: center;
-            font-weight: 700;
-            font-size: 16px;
-        }
-
-        /* Spice Level */
-        .spice-level {
-            display: flex;
-            gap: 2px;
-        }
-
-        .spice-icon {
-            font-size: 12px;
-            color: var(--accent);
-        }
-
-        .spice-icon.inactive {
-            color: var(--border);
-        }
-
-        /* Form Inputs */
-        .form-input {
-            width: 100%;
-            padding: 14px 18px;
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            font-size: 15px;
-            font-family: inherit;
-            transition: all 0.3s ease;
-            background: var(--card);
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 4px var(--accent-light);
-        }
-
-        .form-input::placeholder {
-            color: var(--muted);
-        }
-
-        /* Radio Button Custom */
-        .radio-option {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 16px 20px;
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .radio-option:hover {
-            border-color: var(--accent);
-            background: var(--accent-light);
-        }
-
-        .radio-option.selected {
-            border-color: var(--accent);
-            background: var(--accent-light);
-        }
-
-        .radio-circle {
-            width: 22px;
-            height: 22px;
-            border: 2px solid var(--border);
-            border-radius: 50%;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .radio-option.selected .radio-circle {
-            border-color: var(--accent);
-        }
-
-        .radio-circle::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 10px;
-            height: 10px;
-            background: var(--accent);
-            border-radius: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            transition: transform 0.3s ease;
-        }
-
-        .radio-option.selected .radio-circle::after {
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        /* Cart Badge */
-        .cart-badge {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            width: 24px;
-            height: 24px;
-            background: var(--accent);
-            color: white;
-            border-radius: 50%;
-            font-size: 12px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: pulse-glow 2s infinite;
-        }
-
-        /* Navigation */
-        .nav-link {
-            position: relative;
-            color: var(--fg);
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: var(--accent);
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* Decorative Elements */
-        .decor-circle {
-            position: absolute;
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: var(--fg);
-            color: white;
-            padding: 16px 28px;
-            border-radius: 50px;
-            font-weight: 500;
-            z-index: 2000;
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
-
-        /* Order Steps */
-        .step-indicator {
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-            margin-bottom: 24px;
-        }
-
-        .step-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--border);
-            transition: all 0.3s ease;
-        }
-
-        .step-dot.active {
-            background: var(--accent);
-            transform: scale(1.2);
-        }
-
-        .step-dot.completed {
-            background: var(--success);
-        }
-
-        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .cart-sidebar {
-                width: 100%;
-                right: -100%;
-            }
-
-            .menu-card {
-                padding: 18px;
-            }
-
-            h1 {
-                font-size: 2.5rem !important;
-            }
-
-            h2 {
-                font-size: 2rem !important;
-            }
+            .mobile-bar.active { display: block; animation: scaleIn 0.3s ease forwards; }
         }
 
-        /* Reduced Motion */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* Category Tabs */
-        .category-tab {
-            padding: 10px 24px;
-            border-radius: 50px;
-            background: transparent;
-            border: 2px solid var(--border);
-            color: var(--fg-light);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .category-tab:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .category-tab.active {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: white;
-        }
-
-        /* Image Placeholder */
-        .img-placeholder {
-            background: linear-gradient(135deg, var(--bg-warm) 0%, var(--border) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .img-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Location Button */
-        .location-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 20px;
-            background: var(--blue-light);
-            color: var(--blue);
-            border-radius: 12px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .location-btn:hover {
-            background: var(--blue);
-            color: white;
-        }
-
-        /* Price Tag */
-        .price-tag {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: var(--accent);
-        }
-
-        /* Social Links */
-        .social-link {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: var(--bg-warm);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--fg);
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            background: var(--accent);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        /* Floating Cart Button */
-        .floating-cart {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            cursor: pointer;
-            z-index: 100;
-            box-shadow: 0 8px 30px rgba(232, 106, 51, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .floating-cart:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 40px rgba(232, 106, 51, 0.5);
-        }
     </style>
 </head>
-<body class="pattern-bg">
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-[var(--border)]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16 sm:h-20">
-                <a href="#" class="flex items-center gap-3">
-                    <!-- Logo placeholder - Add your logo image here -->
-                    <div class="w-12 h-12 rounded-full img-placeholder overflow-hidden">
-                        <!-- REPLACE: Add your logo image here -->
-                        <img src="https://z-cdn-media.chatglm.cn/files/f16c914a-c91a-41cb-9974-e8aae61517aa.jpeg?auth_key=1873520342-118af2c3b41e461f8f3b76efbfbabd46-0-0db4f69519c0b851bad034fb715c2eec" alt="Bunty Kaka Bhavanagri Logo">
-                    </div>
-                    <div class="hidden sm:block">
-                        <span class="font-bold text-lg text-[var(--fg)]">Bunty Kaka</span>
-                        <span class="block text-xs text-[var(--muted)]">Bhavanagri</span>
-                    </div>
-                </a>
-                
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="#menu" class="nav-link">Menu</a>
-                    <a href="#about" class="nav-link">Our Story</a>
-                    <a href="#contact" class="nav-link">Contact</a>
+
+<body class="bg-background font-sans">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-background/80 border-b border-border/50">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3">
+                <!-- Logo Placeholder -->
+                <img src="logo-placeholder.png" alt="Logo" class="h-10 w-auto" id="nav-logo">
+                <div class="hidden sm:block">
+                    <h1 class="font-serif text-xl font-bold tracking-tight">Bunty Kaka</h1>
+                    <p class="text-[10px] uppercase tracking-[0.2em] text-muted -mt-1">Bhavnagari</p>
                 </div>
-                
-                <button onclick="openCart()" class="relative p-2 rounded-full hover:bg-[var(--bg-warm)] transition-colors" aria-label="Open cart">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="9" cy="21" r="1"></circle>
-                        <circle cx="20" cy="21" r="1"></circle>
-                        <path d="m1 1 4 4h16l-2.5 9H6.5"></path>
-                    </svg>
-                    <span id="navCartBadge" class="cart-badge hidden">0</span>
-                </button>
+            </a>
+
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#menu" class="text-sm font-medium text-muted hover:text-text transition-colors">Menu</a>
+                <a href="#story" class="text-sm font-medium text-muted hover:text-text transition-colors">Story</a>
+                <a href="#contact" class="text-sm font-medium text-muted hover:text-text transition-colors">Find Us</a>
             </div>
+
+            <button onclick="toggleCart(true)" class="relative group">
+                <div class="flex items-center gap-2 bg-text text-white px-5 py-2.5 rounded-full text-sm font-semibold group-hover:bg-accent transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                    <span>Cart</span>
+                    <span id="nav-cart-count" class="absolute -top-2 -right-2 bg-accent text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold opacity-0 scale-0 transition-transform">0</span>
+                </div>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="min-h-screen flex items-center pt-20 relative overflow-hidden">
-        <!-- Decorative Elements -->
-        <div class="decor-circle w-96 h-96 bg-[var(--accent)] opacity-5 -top-20 -right-20 animate-float"></div>
-        <div class="decor-circle w-64 h-64 bg-[var(--blue)] opacity-5 bottom-20 -left-10 animate-float-reverse"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                <div class="order-2 lg:order-1 animate-slide-up">
-                    <span class="inline-block px-4 py-2 bg-[var(--accent-light)] text-[var(--accent)] rounded-full text-sm font-semibold mb-6">
-                        Since 2024 | Authentic Bhavnagari Taste
-                    </span>
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--fg)] leading-tight mb-6">
-                        Bunty Kaka<br>
-                        <span class="text-[var(--accent)]">Bhavanagri</span>
+    <!-- HERO SECTION -->
+    <section id="hero" class="min-h-screen pt-20 relative overflow-hidden">
+        <div class="shape-blob w-[600px] h-[600px] bg-accent/20 top-[-200px] right-[-200px]"></div>
+        <div class="shape-blob w-[400px] h-[400px] bg-secondary/20 bottom-[-100px] left-[-100px]"></div>
+
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center h-full min-h-[calc(100vh-80px)]">
+            <div class="order-2 lg:order-1 py-12 lg:py-0">
+                <div class="space-y-6">
+                    <div class="animate-fade-up">
+                        <span class="inline-block bg-white border border-border px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider text-muted shadow-sm">
+                            FSSAI Certified Kitchen
+                        </span>
+                    </div>
+                    
+                    <h1 class="text-5xl md:text-7xl font-serif leading-[1.1] tracking-tight text-text animate-fade-up delay-100">
+                        Authentic<br>
+                        <span class="italic text-accent">Bhavnagari</span><br>
+                        Taste.
                     </h1>
-                    <p class="text-lg sm:text-xl text-[var(--fg-light)] mb-8 leading-relaxed max-w-lg">
-                        Experience the legendary Bhavnagari Bateta Bhungla with authentic flavors that transport you to the streets of Bhavnagar.
+
+                    <p class="text-lg text-muted max-w-md leading-relaxed animate-fade-up delay-200">
+                        From the streets of Bhavnagar to your table. Experience the legendary Bateta Bhungla with 5 levels of spice.
                     </p>
-                    
-                    <div class="flex flex-wrap gap-4 mb-8">
-                        <a href="#menu" class="btn-primary inline-flex items-center gap-2">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                                <line x1="3" y1="6" x2="21" y2="6"></line>
-                                <path d="M16 10a4 4 0 0 1-8 0"></path>
-                            </svg>
-                            Explore Menu
+
+                    <div class="flex flex-wrap gap-4 pt-4 animate-fade-up delay-300">
+                        <a href="#menu" class="btn-primary px-8 py-4 rounded-full text-sm font-semibold flex items-center gap-2 group">
+                            <span>Explore Menu</span>
+                            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                         </a>
-                        <a href="#about" class="btn-secondary">Our Story</a>
-                    </div>
-                    
-                    <div class="flex items-center gap-6 text-sm">
-                        <div class="flex items-center gap-2">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                            <span class="text-[var(--fg-light)]">05:30 PM - 11:00 PM</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
-                                <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                            <span class="text-[var(--fg-light)]">Bhavnagar, Gujarat</span>
-                        </div>
+                        <a href="#contact" class="btn-outline px-8 py-4 rounded-full text-sm font-semibold">
+                            Visit Us
+                        </a>
                     </div>
                 </div>
-                
-                <div class="order-1 lg:order-2 flex justify-center">
-                    <div class="relative">
-                        <div class="w-72 h-72 sm:w-96 sm:h-96 rounded-full img-placeholder animate-float shadow-2xl overflow-hidden border-8 border-white">
-                            <!-- REPLACE: Add your hero/main food image here -->
-                            <img src="https://z-cdn-media.chatglm.cn/files/f16c914a-c91a-41cb-9974-e8aae61517aa.jpeg?auth_key=1873520342-118af2c3b41e461f8f3b76efbfbabd46-0-0db4f69519c0b851bad034fb715c2eec" alt="Bunty Kaka Bhavanagri Logo" class="w-full h-full object-cover">
-                        </div>
-                        <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-xl animate-scale-in" style="animation-delay: 0.3s;">
-                            <div class="flex items-center gap-3">
-                                <div class="w-12 h-12 bg-[var(--accent-light)] rounded-full flex items-center justify-center">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
-                                        <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <span class="block text-xs text-[var(--muted)]">Fresh Daily</span>
-                                    <span class="font-bold text-[var(--fg)]">Made with Love</span>
-                                </div>
+            </div>
+
+            <div class="order-1 lg:order-2 relative h-[500px] lg:h-auto animate-fade-up delay-200">
+                <!-- Hero Image Composition -->
+                <div class="relative w-full h-full flex items-center justify-center">
+                    <!-- Background Shape -->
+                    <div class="absolute w-[80%] h-[80%] bg-secondary/10 rounded-full transform rotate-12 scale-90 z-0"></div>
+                    
+                    <!-- Main Image -->
+                    <div class="relative z-10 w-72 h-72 md:w-96 md:h-96 rounded-[3rem] overflow-hidden shadow-2xl transform rotate-3 animate-float border-4 border-white">
+                        <img src="hero-food-placeholder.png" alt="Signature Dish" class="w-full h-full object-cover" id="hero-img">
+                    </div>
+
+                    <!-- Floating Card 1 -->
+                    <div class="absolute top-10 left-0 md:left-10 bg-white p-4 rounded-2xl shadow-xl z-20 animate-float" style="animation-delay: 1s;">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center text-accent text-lg">🌶️</div>
+                            <div>
+                                <p class="font-bold text-sm">Rocket Spicy</p>
+                                <p class="text-xs text-muted">Level 5 Heat</p>
                             </div>
                         </div>
-                        <div class="absolute -top-4 -right-4 bg-white rounded-2xl p-4 shadow-xl animate-scale-in" style="animation-delay: 0.5s;">
-                            <div class="flex items-center gap-3">
-                                <div class="w-12 h-12 bg-[var(--blue-light)] rounded-full flex items-center justify-center">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2">
-                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <span class="block text-xs text-[var(--muted)]">FSSAI</span>
-                                    <span class="font-bold text-[var(--fg)]">Certified</span>
-                                </div>
+                    </div>
+
+                    <!-- Floating Card 2 -->
+                    <div class="absolute bottom-16 right-0 md:right-10 bg-white p-4 rounded-2xl shadow-xl z-20 animate-float" style="animation-delay: 2s;">
+                         <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-success/10 rounded-full flex items-center justify-center text-success text-lg">✓</div>
+                            <div>
+                                <p class="font-bold text-sm">Swaminarayan</p>
+                                <p class="text-xs text-muted">No Onion Garlic</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+    </section>
 
-    <!-- About / Founder Story Section -->
-    <section id="about" class="py-20 sm:py-28 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                <div class="reveal">
-                    <div class="relative">
-                        <div class="w-full aspect-square max-w-md mx-auto rounded-3xl img-placeholder overflow-hidden shadow-2xl">
-                            <!-- REPLACE: Add founder/chef image here -->
-                            <img src="https://z-cdn-media.chatglm.cn/files/f16c914a-c91a-41cb-9974-e8aae61517aa.jpeg?auth_key=1873520342-118af2c3b41e461f8f3b76efbfbabd46-0-0db4f69519c0b851bad034fb715c2eec" alt="Founder Bunty Kaka" class="w-full h-full object-cover">
-                        </div>
-                        <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-[var(--accent)] rounded-2xl -z-10"></div>
-                        <div class="absolute -top-6 -left-6 w-24 h-24 bg-[var(--blue-light)] rounded-2xl -z-10"></div>
-                    </div>
+    <!-- MENU SECTION -->
+    <section id="menu" class="py-24 px-6 bg-white border-t border-border relative">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <span class="text-accent text-xs font-bold uppercase tracking-widest">Our Selection</span>
+                    <h2 class="text-4xl md:text-5xl font-serif mt-2">The Menu</h2>
                 </div>
-                
-                <div class="reveal" style="transition-delay: 0.2s;">
-                    <span class="inline-block px-4 py-2 bg-[var(--blue-light)] text-[var(--blue)] rounded-full text-sm font-semibold mb-6">
-                        Our Story
-                    </span>
-                    <h2 class="text-3xl sm:text-4xl font-bold text-[var(--fg)] mb-6">
-                        A Taste That Travels Through Generations
-                    </h2>
-                    <div class="space-y-4 text-[var(--fg-light)] leading-relaxed">
-                        <p>
-                            In the bustling lanes of Bhavnagar, where the aroma of spices mingles with the sea breeze, Bunty Kaka discovered his passion for cooking at the age of twelve. Watching his grandmother prepare Bateta Bhungla with meticulous care, he learned that great food is not just about ingredients—it's about love, patience, and tradition.
-                        </p>
-                        <p>
-                            After years of perfecting the art of making the perfect Bhungla, Bunty Kaka decided to bring the authentic taste of Bhavnagar to everyone. His secret? Fresh ingredients, traditional recipes passed down through generations, and that extra sprinkle of warmth in every dish.
-                        </p>
-                        <p>
-                            Today, Bunty Kaka Bhavanagri stands as a testament to those childhood memories, serving the same authentic flavors that once filled his grandmother's kitchen. Every bite tells a story of heritage, passion, and the undying spirit of Bhavnagari cuisine.
-                        </p>
-                    </div>
-                    
-                    <div class="mt-8 p-6 bg-[var(--bg-warm)] rounded-2xl border-l-4 border-[var(--accent)]">
-                        <p class="text-lg italic text-[var(--fg)]">
-                            "Food is not just sustenance; it's a memory, a story, a connection to our roots."
-                        </p>
-                        <p class="mt-2 font-semibold text-[var(--accent)]">- Bunty Kaka</p>
-                    </div>
+
+                <!-- Filters -->
+                <div class="flex gap-2 overflow-x-auto pb-2 hide-scrollbar">
+                    <button onclick="filterMenu('all')" class="filter-btn active px-6 py-2.5 rounded-full text-xs font-semibold border border-border bg-text text-white whitespace-nowrap transition-all" data-cat="all">All Items</button>
+                    <button onclick="filterMenu('bhungla')" class="filter-btn px-6 py-2.5 rounded-full text-xs font-semibold border border-border hover:border-text whitespace-nowrap transition-all" data-cat="bhungla">Bateta Bhungla</button>
+                    <button onclick="filterMenu('snacks')" class="filter-btn px-6 py-2.5 rounded-full text-xs font-semibold border border-border hover:border-text whitespace-nowrap transition-all" data-cat="snacks">Snacks</button>
+                    <button onclick="filterMenu('drinks')" class="filter-btn px-6 py-2.5 rounded-full text-xs font-semibold border border-border hover:border-text whitespace-nowrap transition-all" data-cat="drinks">Drinks</button>
                 </div>
+            </div>
+
+            <!-- Grid -->
+            <div id="menu-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- JS Rendered -->
             </div>
         </div>
     </section>
 
-    <!-- Menu Section -->
-    <section id="menu" class="py-20 sm:py-28 bg-white relative">
-        <div class="absolute inset-0 opacity-50" style="background-image: radial-gradient(circle at 2px 2px, var(--border) 1px, transparent 0); background-size: 40px 40px;"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div class="text-center mb-12 reveal">
-                <span class="inline-block px-4 py-2 bg-[var(--accent-light)] text-[var(--accent)] rounded-full text-sm font-semibold mb-4">
-                    Our Menu
-                </span>
-                <h2 class="text-3xl sm:text-4xl font-bold text-[var(--fg)] mb-4">
-                    Authentic Bhavnagari Delights
-                </h2>
-                <p class="text-[var(--fg-light)] max-w-2xl mx-auto">
-                    Each dish is crafted with love, using traditional recipes and the freshest ingredients
-                </p>
-            </div>
-
-            <!-- Category Tabs -->
-            <div class="flex flex-wrap justify-center gap-3 mb-12 reveal">
-                <button class="category-tab active" onclick="filterCategory('all')">All Items</button>
-                <button class="category-tab" onclick="filterCategory('bhungla')">Bateta Bhungla</button>
-                <button class="category-tab" onclick="filterCategory('snacks')">Special Snacks</button>
-                <button class="category-tab" onclick="filterCategory('drinks')">Drinks</button>
-            </div>
-
-            <!-- Menu Grid -->
-            <div id="menuGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Menu items will be rendered here by JavaScript -->
-            </div>
-
-            <div class="mt-8 text-center reveal">
-                <p class="text-[var(--muted)] text-sm">
-                    Parcel Charge Extra - Rs 10
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 sm:py-28 relative overflow-hidden">
-        <div class="decor-circle w-96 h-96 bg-[var(--accent)] opacity-5 -bottom-20 -right-20"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 reveal">
-                <span class="inline-block px-4 py-2 bg-[var(--accent-light)] text-[var(--accent)] rounded-full text-sm font-semibold mb-4">
-                    Contact Us
-                </span>
-                <h2 class="text-3xl sm:text-4xl font-bold text-[var(--fg)] mb-4">
-                    We'd Love to Hear From You
-                </h2>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
-                <div class="bg-white rounded-2xl p-6 text-center border border-[var(--border)] hover:border-[var(--accent)] transition-colors">
-                    <div class="w-14 h-14 bg-[var(--accent-light)] rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12 6 12 12 16 14"></polyline>
-                        </svg>
-                    </div>
-                    <h3 class="font-semibold text-[var(--fg)] mb-2">Opening Hours</h3>
-                    <p class="text-[var(--fg-light)] text-sm">05:30 PM - 11:00 PM<br>Daily</p>
-                </div>
-
-                <div class="bg-white rounded-2xl p-6 text-center border border-[var(--border)] hover:border-[var(--accent)] transition-colors">
-                    <div class="w-14 h-14 bg-[var(--blue-light)] rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-semibold text-[var(--fg)] mb-2">Call Us</h3>
-                    <a href="tel:+919824847345" class="text-[var(--accent)] font-medium hover:underline">+91 98248 47345</a>
-                </div>
-
-                <div class="bg-white rounded-2xl p-6 text-center border border-[var(--border)] hover:border-[var(--accent)] transition-colors">
-                    <div class="w-14 h-14 bg-[var(--accent-light)] rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                    </div>
-                    <h3 class="font-semibold text-[var(--fg)] mb-2">Email Us</h3>
-                    <a href="mailto:buntykaka.bhavnagari@gmail.com" class="text-[var(--accent)] font-medium hover:underline text-sm break-all">buntykaka.bhavnagari@gmail.com</a>
-                </div>
-
-                <div class="bg-white rounded-2xl p-6 text-center border border-[var(--border)] hover:border-[var(--accent)] transition-colors">
-                    <div class="w-14 h-14 bg-[var(--blue-light)] rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                            <circle cx="12" cy="10" r="3"></circle>
-                        </svg>
-                    </div>
-                    <h3 class="font-semibold text-[var(--fg)] mb-2">Location</h3>
-                    <a href="https://maps.app.goo.gl/TRxf49KJaL5XdeRQ7" target="_blank" class="text-[var(--accent)] font-medium hover:underline">View on Map</a>
-                </div>
-            </div>
-
-            <!-- Social Links -->
-            <div class="mt-12 text-center reveal">
-                <p class="text-[var(--fg-light)] mb-4">Follow us on social media</p>
-                <div class="flex justify-center gap-4">
-                    <a href="https://youtube.com/@buntykaka.bhavnagari?si=q9rkomVv_Kd8zTKH" target="_blank" class="social-link" aria-label="YouTube">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                        </svg>
-                    </a>
-                    <a href="https://www.facebook.com/share/18EfCRBMMg/" target="_blank" class="social-link" aria-label="Facebook">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                        </svg>
-                    </a>
-                    <a href="https://www.instagram.com/bunty_kaka_bhavnagari?igsh=MW04emV1djZ3bnc5dQ==" target="_blank" class="social-link" aria-label="Instagram">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </a>
-                    <a href="https://wa.me/919824847345" target="_blank" class="social-link" aria-label="WhatsApp">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-[var(--fg)] text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-3 gap-8 items-center">
-                <div class="flex items-center gap-4">
-                    <div class="w-16 h-16 rounded-full img-placeholder overflow-hidden bg-white">
-                        <!-- REPLACE: Add your logo image here -->
-                        <img src="https://z-cdn-media.chatglm.cn/files/f16c914a-c91a-41cb-9974-e8aae61517aa.jpeg?auth_key=1873520342-118af2c3b41e461f8f3b76efbfbabd46-0-0db4f69519c0b851bad034fb715c2eec" alt="Bunty Kaka Bhavanagri Logo" class="w-full h-full object-cover">
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg">Bunty Kaka Bhavanagri</h3>
-                        <p class="text-white/70 text-sm">Authentic Bhavnagari Taste</p>
-                    </div>
-                </div>
-                
-                <div class="text-center">
-                    <p class="text-white/70 text-sm">FSSAI License: 20724037001123</p>
-                    <p class="text-white/50 text-sm mt-2">Since 2024</p>
-                </div>
-                
-                <div class="text-center md:text-right">
-                    <p class="text-white/70 text-sm">Open Daily: 05:30 PM - 11:00 PM</p>
-                    <p class="text-white/50 text-sm mt-2">Bhavnagar, Gujarat, India</p>
-                </div>
+    <!-- STORY SECTION -->
+    <section id="story" class="py-24 bg-background overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-5 relative">
+                <div class="absolute -inset-4 border border-border rounded-3xl transform -rotate-6"></div>
+                <img src="founder-placeholder.png" alt="Founder Story" class="relative w-full h-[500px] object-cover rounded-3xl grayscale hover:grayscale-0 transition-all duration-700 shadow-xl" id="founder-img">
             </div>
             
-            <div class="border-t border-white/10 mt-8 pt-8 text-center">
-                <p class="text-white/50 text-sm">
-                    &copy; 2024 Bunty Kaka Bhavanagri. All rights reserved.
+            <div class="lg:col-span-7 lg:pl-12">
+                <span class="text-secondary text-xs font-bold uppercase tracking-widest">Est. 2009</span>
+                <h2 class="text-4xl md:text-5xl font-serif mt-2 mb-6">A Legacy of<br><span class="italic">Flavor</span></h2>
+                
+                <div class="space-y-4 text-muted leading-relaxed">
+                    <p>In the vibrant lanes of Bhavnagar, Bunty Kaka began a journey that would redefine street food. It wasn't just about selling Bateta Bhungla; it was about crafting an experience.</p>
+                    <p>Today, every plate serves a memory—carefully curated with secret spices and decades of expertise. From the "Kids Level" sweetness to the "Rocket Spicy" inferno, there's a story in every bite.</p>
+                </div>
+
+                <div class="flex gap-8 mt-10 pt-10 border-t border-border">
+                    <div>
+                        <p class="font-serif text-4xl font-bold text-accent">15+</p>
+                        <p class="text-xs text-muted uppercase mt-1">Years of Legacy</p>
+                    </div>
+                    <div>
+                        <p class="font-serif text-4xl font-bold text-text">50K+</p>
+                        <p class="text-xs text-muted uppercase mt-1">Happy Customers</p>
+                    </div>
+                    <div>
+                        <p class="font-serif text-4xl font-bold text-secondary">5</p>
+                        <p class="text-xs text-muted uppercase mt-1">Spice Levels</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER / CONTACT -->
+    <footer id="contact" class="bg-text text-white py-20 px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 border-b border-white/10 pb-16">
+            <div class="md:col-span-2">
+                <h3 class="font-serif text-3xl mb-4">Bunty Kaka<br><span class="italic text-accent">Bhavnagari</span></h3>
+                <p class="text-white/60 text-sm max-w-sm leading-relaxed">
+                    Authentic Bhavnagari street food. We serve purity on a plate with unmatched taste and tradition.
                 </p>
             </div>
+            
+            <div>
+                <h4 class="font-semibold mb-4 text-sm uppercase tracking-wider">Hours</h4>
+                <p class="text-white/60 text-sm">Daily: 05:30 PM - 11:00 PM</p>
+                <div class="flex items-center gap-2 mt-2">
+                    <span class="w-2 h-2 bg-success rounded-full animate-pulse"></span>
+                    <span class="text-success text-sm">Currently Open</span>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-4 text-sm uppercase tracking-wider">Contact</h4>
+                <a href="tel:+919824847345" class="block text-white/60 hover:text-accent text-sm mb-2">+91 98248 47345</a>
+                <a href="mailto:buntykaka.bhavnagari@gmail.com" class="block text-white/60 hover:text-accent text-sm mb-4">Email Us</a>
+                <div class="flex gap-3">
+                    <a href="https://maps.app.goo.gl/TRxf49KJaL5XdeRQ7" target="_blank" class="bg-white/10 hover:bg-accent p-2 rounded-lg transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+                    </a>
+                    <a href="https://youtube.com/@buntykaka.bhavnagari?si=q9rkomVv_Kd8zTKH" target="_blank" class="bg-white/10 hover:bg-accent p-2 rounded-lg transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/bunty_kaka_bhavnagari?igsh=MW04emV1djZ3bnc5dQ==" target="_blank" class="bg-white/10 hover:bg-accent p-2 rounded-lg transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pt-8 text-center text-xs text-white/30">
+            FSSAI Lic: 20724037001123 &copy; 2024 Bunty Kaka Bhavnagari. All Rights Reserved.
         </div>
     </footer>
 
-    <!-- Floating Cart Button (Mobile) -->
-    <button id="floatingCart" onclick="openCart()" class="floating-cart lg:hidden hidden" aria-label="Open cart">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="9" cy="21" r="1"></circle>
-            <circle cx="20" cy="21" r="1"></circle>
-            <path d="m1 1 4 4h16l-2.5 9H6.5"></path>
-        </svg>
-        <span id="floatingCartBadge" class="cart-badge hidden">0</span>
-    </button>
+    <!-- MOBILE STICKY CART BAR -->
+    <div id="mobile-bar" class="mobile-bar">
+        <button onclick="toggleCart(true)" class="w-full flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-text text-white rounded-full px-3 py-1 text-xs font-bold" id="m-count">0</div>
+                <span class="font-semibold">View Cart</span>
+            </div>
+            <div class="flex items-center gap-1 text-accent font-bold">
+                <span id="m-total">₹0</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </div>
+        </button>
+    </div>
 
-    <!-- Cart Overlay -->
-    <div id="cartOverlay" class="cart-overlay" onclick="closeCart()"></div>
-
-    <!-- Cart Sidebar -->
-    <aside id="cartSidebar" class="cart-sidebar" role="dialog" aria-label="Shopping cart">
-        <div class="p-6 border-b border-[var(--border)] flex items-center justify-between bg-[var(--bg-warm)]">
-            <h2 class="text-xl font-bold text-[var(--fg)]">Your Order</h2>
-            <button onclick="closeCart()" class="w-10 h-10 rounded-full hover:bg-[var(--border)] flex items-center justify-center transition-colors" aria-label="Close cart">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
+    <!-- CART SIDEBAR -->
+    <div id="cart-overlay" class="fixed inset-0 bg-black/40 z-40 opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-sm" onclick="toggleCart(false)"></div>
+    
+    <div id="cart-drawer" class="cart-sidebar">
+        <!-- Header -->
+        <div class="p-6 border-b border-border flex justify-between items-center bg-white z-10">
+            <div>
+                <h3 class="text-xl font-serif font-bold">Your Order</h3>
+                <p class="text-xs text-muted mt-0.5" id="cart-subtitle">Add items to get started</p>
+            </div>
+            <button onclick="toggleCart(false)" class="p-2 hover:bg-surface rounded-full transition-colors">
+                <svg class="w-6 h-6 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
         </div>
 
-        <div id="cartContent" class="flex-1 overflow-y-auto">
-            <!-- Cart items will be rendered here -->
+        <!-- Steps Indicator -->
+        <div class="flex border-b border-border bg-surface/50 text-xs font-semibold uppercase tracking-wider">
+            <div class="flex-1 py-3 text-center text-accent border-b-2 border-accent" id="step-1-tab">Items</div>
+            <div class="flex-1 py-3 text-center text-muted border-b-2 border-transparent" id="step-2-tab">Details</div>
+            <div class="flex-1 py-3 text-center text-muted border-b-2 border-transparent" id="step-3-tab">Confirm</div>
         </div>
 
-        <div id="cartFooter" class="p-6 border-t border-[var(--border)] bg-[var(--bg-warm)] hidden">
-            <!-- Footer will be rendered here -->
-        </div>
-    </aside>
+        <!-- Scrollable Content -->
+        <div class="flex-1 overflow-y-auto relative">
+            
+            <!-- Step 1: Cart Items -->
+            <div id="step-1" class="p-6 space-y-4 absolute top-0 left-0 w-full h-full bg-white">
+                <div id="empty-state" class="flex flex-col items-center justify-center h-full text-center">
+                    <div class="w-24 h-24 bg-surface rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-10 h-10 text-border" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                    </div>
+                    <h4 class="font-semibold text-muted">Your cart is empty</h4>
+                    <p class="text-xs text-muted/60 mt-1">Add some items from the menu</p>
+                </div>
+                <div id="cart-items" class="space-y-4 hidden"></div>
+            </div>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="toast"></div>
+            <!-- Step 2: Customer Details -->
+            <div id="step-2" class="p-6 hidden absolute top-0 left-0 w-full h-full bg-white">
+                <div class="space-y-5">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-muted mb-2">Order Type</label>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button onclick="setOrderType('pickup')" class="order-type-btn active bg-text text-white py-2.5 rounded-xl text-xs font-semibold transition-all" data-type="pickup">Pickup</button>
+                            <button onclick="setOrderType('delivery')" class="order-type-btn bg-surface py-2.5 rounded-xl text-xs font-semibold transition-all hover:bg-border" data-type="delivery">Delivery</button>
+                            <button onclick="setOrderType('table')" class="order-type-btn bg-surface py-2.5 rounded-xl text-xs font-semibold transition-all hover:bg-border" data-type="table">Table</button>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Info Box -->
+                    <div id="info-box" class="bg-secondary/10 p-3 rounded-xl text-xs text-text border border-secondary/20">
+                        <p>Pickup from our shop. <a href="https://maps.app.goo.gl/TRxf49KJaL5XdeRQ7" target="_blank" class="underline font-bold text-accent">View Location</a></p>
+                    </div>
+
+                    <input type="text" id="input-name" placeholder="Your Name *" class="w-full bg-surface border border-border p-3 rounded-xl text-sm focus:border-accent focus:ring-0 outline-none transition-colors">
+                    <input type="tel" id="input-phone" placeholder="Phone Number *" class="w-full bg-surface border border-border p-3 rounded-xl text-sm focus:border-accent focus:ring-0 outline-none transition-colors">
+                    
+                    <div id="input-addr-box" class="hidden">
+                        <textarea id="input-address" placeholder="Delivery Address *" class="w-full bg-surface border border-border p-3 rounded-xl text-sm resize-none focus:border-accent outline-none transition-colors"></textarea>
+                        <p class="text-[10px] text-muted mt-1 italic">* Delivery charges will be confirmed on WhatsApp.</p>
+                    </div>
+
+                    <div id="input-table-box" class="hidden">
+                        <input type="text" id="input-table" placeholder="Table Number *" class="w-full bg-surface border border-border p-3 rounded-xl text-sm focus:border-accent outline-none transition-colors">
+                    </div>
+
+                    <textarea id="input-notes" placeholder="Special Instructions (Optional)" class="w-full bg-surface border border-border p-3 rounded-xl text-sm resize-none h-20 focus:border-accent outline-none transition-colors"></textarea>
+                </div>
+            </div>
+
+            <!-- Step 3: Summary -->
+            <div id="step-3" class="p-6 hidden absolute top-0 left-0 w-full h-full bg-white">
+                <div class="bg-surface rounded-2xl p-4 mb-4 border border-border">
+                    <div id="sum-items" class="space-y-2 text-sm border-b border-border pb-3 mb-3"></div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between text-muted"><span>Subtotal</span> <span id="sum-sub">₹0</span></div>
+                        <div class="flex justify-between text-muted" id="sum-parcel-row"><span>Parcel Charge</span> <span>₹10</span></div>
+                        <div class="flex justify-between font-bold text-lg pt-2 border-t border-border mt-2"><span>Total</span> <span id="sum-total">₹0</span></div>
+                    </div>
+                </div>
+                <div class="bg-white border border-border rounded-2xl p-4 text-sm space-y-2">
+                    <div class="flex justify-between"><span class="text-muted">Name</span> <span class="font-medium" id="sum-name">-</span></div>
+                    <div class="flex justify-between"><span class="text-muted">Phone</span> <span class="font-medium" id="sum-phone">-</span></div>
+                    <div class="flex justify-between"><span class="text-muted">Type</span> <span class="font-medium uppercase" id="sum-type">-</span></div>
+                    <div class="flex justify-between hidden" id="sum-addr-row"><span class="text-muted">Address</span> <span class="font-medium text-right w-1/2" id="sum-address">-</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Action -->
+        <div class="p-6 border-t border-border bg-white mt-auto">
+            <button id="action-btn" onclick="handleAction()" class="w-full bg-text text-white py-4 rounded-xl font-semibold hover:bg-accent transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                Continue <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </button>
+        </div>
+    </div>
 
     <script>
-        // Menu Data
-        const menuItems = [
-            // Bateta Bhungla
-            {
-                id: 1,
-                name: "Bateta Bhungla + 12 No. Bhungla",
-                description: "Soft on spice, strong on sweet",
-                price: 60,
-                category: "bhungla",
-                spiceLevel: 1,
-                spiceText: "Kids Level"
-            },
-            {
-                id: 2,
-                name: "Bateta Bhungla + 12 No. Bhungla",
-                description: "Where sugar kisses spice",
-                price: 60,
-                category: "bhungla",
-                spiceLevel: 2,
-                spiceText: "Medium"
-            },
-            {
-                id: 3,
-                name: "Spicy Bateta Bhungla + 12 No. Bhungla",
-                description: "Spicy lover paradise",
-                price: 60,
-                category: "bhungla",
-                spiceLevel: 3,
-                spiceText: "Spicy"
-            },
-            {
-                id: 4,
-                name: "Super Spicy Bateta Bhungla + 12 No. Bhungla",
-                description: "Feel the burn, love the bite",
-                price: 60,
-                category: "bhungla",
-                spiceLevel: 4,
-                spiceText: "Extra Spicy"
-            },
-            {
-                id: 5,
-                name: "Rocket Spicy Bateta Bhungla + 12 No. Bhungla",
-                description: "Not just spicy, it's a survival test",
-                price: 70,
-                category: "bhungla",
-                spiceLevel: 5,
-                spiceText: "Extreme"
-            },
-            {
-                id: 6,
-                name: "Swaminarayan Bateta Bhungla + 12 No. Bhungla",
-                description: "No onion, No garlic",
-                price: 60,
-                category: "bhungla",
-                spiceLevel: 2,
-                spiceText: "Medium (Jain)"
-            },
-            {
-                id: 7,
-                name: "Extra Bhungla - 12 No.",
-                description: "Extra crispy bhungla",
-                price: 10,
-                category: "bhungla",
-                spiceLevel: 0,
-                spiceText: ""
-            },
-            // Special Snacks
-            {
-                id: 8,
-                name: "Chanamath",
-                description: "Chana + Math + Bateta",
-                price: 60,
-                category: "snacks",
-                spiceLevel: 2,
-                spiceText: "Medium"
-            },
-            {
-                id: 9,
-                name: "Dahi Vada",
-                description: "Jain + Swaminarayan available",
-                price: 70,
-                category: "snacks",
-                spiceLevel: 0,
-                spiceText: ""
-            },
-            {
-                id: 10,
-                name: "Mix Plate",
-                description: "Chana Math + Bateta Bhungla + Ghanthiya",
-                price: 100,
-                category: "snacks",
-                spiceLevel: 0,
-                spiceText: "Flavorful Snack"
-            },
-            {
-                id: 11,
-                name: "Extra Sing",
-                description: "Extra sev/bhujia topping",
-                price: 10,
-                category: "snacks",
-                spiceLevel: 0,
-                spiceText: ""
-            },
-            // Drinks
-            {
-                id: 12,
-                name: "Buttermilk (Fast Special)",
-                description: "Refreshing 250ml",
-                price: 20,
-                category: "drinks",
-                spiceLevel: 0,
-                spiceText: ""
-            },
-            {
-                id: 13,
-                name: "Ghorvu",
-                description: "Traditional Village Style Thick Buttermilk - 250ml",
-                price: 40,
-                category: "drinks",
-                spiceLevel: 0,
-                spiceText: ""
-            }
+        // --- DATA & STATE ---
+        const menuData = [
+            { id: 1, name: "Bateta Bhungla + 12 No.", desc: "Kids Level - Sweet & Mild", price: 60, cat: "bhungla", spice: 1, img: "logo-placeholder.png" },
+            { id: 2, name: "Bateta Bhungla + 12 No.", desc: "Sugar Kisses Spice", price: 60, cat: "bhungla", spice: 2, img: "logo-placeholder.png" },
+            { id: 3, name: "Spicy Bateta Bhungla", desc: "Spicy Lover Paradise", price: 60, cat: "bhungla", spice: 3, img: "logo-placeholder.png" },
+            { id: 4, name: "Super Spicy Bhungla", desc: "Feel The Burn", price: 60, cat: "bhungla", spice: 4, img: "logo-placeholder.png" },
+            { id: 5, name: "Rocket Spicy Bhungla", desc: "Survival Test", price: 70, cat: "bhungla", spice: 5, img: "logo-placeholder.png" },
+            { id: 6, name: "Swaminarayan Special", desc: "No Onion, No Garlic", price: 60, cat: "bhungla", spice: 2, img: "logo-placeholder.png" },
+            { id: 7, name: "Extra Bhungla (12 No.)", desc: "Add Extra", price: 10, cat: "bhungla", spice: 0, img: "logo-placeholder.png" },
+            { id: 8, name: "Chanamath", desc: "Chana + Math + Bateta", price: 60, cat: "snacks", spice: 2, img: "logo-placeholder.png" },
+            { id: 9, name: "Dahi Vada", desc: "Jain & Swaminarayan", price: 70, cat: "snacks", spice: 0, img: "logo-placeholder.png" },
+            { id: 10, name: "Mix Plate", desc: "The Complete Combo", price: 100, cat: "snacks", spice: 0, img: "logo-placeholder.png" },
+            { id: 11, name: "Extra Sing", desc: "Crunchy Sev", price: 10, cat: "snacks", spice: 0, img: "logo-placeholder.png" },
+            { id: 12, name: "Buttermilk", desc: "Refreshing 250ml", price: 20, cat: "drinks", spice: 0, img: "logo-placeholder.png" },
+            { id: 13, name: "Ghorvu", desc: "Village Style 250ml", price: 40, cat: "drinks", spice: 0, img: "logo-placeholder.png" }
         ];
 
-        // Cart State
         let cart = [];
-        let orderStep = 1; // 1: Cart, 2: Details, 3: Summary
+        let currentStep = 1;
+        let orderType = 'pickup';
+        const PARCEL_CHARGE = 10;
+        const WA_NUMBER = '919824847345';
 
-        // DOM Elements - Initialize after DOM is ready
-        let menuGrid, cartContent, cartFooter, cartSidebar, cartOverlay, toast;
-        let navCartBadge, floatingCart, floatingCartBadge;
+        // --- DOM ELEMENTS ---
+        const menuContainer = document.getElementById('menu-container');
+        const cartDrawer = document.getElementById('cart-drawer');
+        const cartOverlay = document.getElementById('cart-overlay');
 
-        // Initialize everything after DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get DOM elements
-            menuGrid = document.getElementById('menuGrid');
-            cartContent = document.getElementById('cartContent');
-            cartFooter = document.getElementById('cartFooter');
-            cartSidebar = document.getElementById('cartSidebar');
-            cartOverlay = document.getElementById('cartOverlay');
-            toast = document.getElementById('toast');
-            navCartBadge = document.getElementById('navCartBadge');
-            floatingCart = document.getElementById('floatingCart');
-            floatingCartBadge = document.getElementById('floatingCartBadge');
+        // --- INITIALIZATION ---
+        renderMenu('all');
 
-            // Render menu
-            renderMenu();
-
-            // Initialize scroll reveal
-            initScrollReveal();
-
-            // Update cart UI
-            updateCartUI();
-        });
-
-        // Render Menu
-        function renderMenu(category = 'all') {
-            if (!menuGrid) return;
+        // --- RENDER MENU ---
+        function renderMenu(cat) {
+            const data = cat === 'all' ? menuData : menuItems = menuData.filter(i => i.cat === cat);
             
-            const filtered = category === 'all' 
-                ? menuItems 
-                : menuItems.filter(item => item.category === category);
+            menuContainer.innerHTML = data.map((item, idx) => {
+                const qty = getQty(item.id);
+                const spiceWidth = (item.spice / 5) * 100;
+                
+                return `
+                <div class="menu-card bg-surface rounded-3xl overflow-hidden border border-border group animate-fade-up" style="animation-delay: ${idx * 50}ms">
+                    <!-- Image -->
+                    <div class="relative h-56 w-full bg-white overflow-hidden">
+                        <img src="${item.img}" alt="${item.name}" class="w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-110">
+                        
+                        <!-- Floating Badge -->
+                        ${item.spice > 0 ? `
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-sm border border-border">
+                            <span class="text-accent">Level ${item.spice}</span>
+                        </div>` : ''}
+                    </div>
 
-            menuGrid.innerHTML = filtered.map((item, index) => `
-                <div class="menu-card reveal" style="transition-delay: ${index * 0.1}s;" data-category="${item.category}">
-                    <div class="flex gap-4">
-                        <div class="w-24 h-24 rounded-xl img-placeholder flex-shrink-0 overflow-hidden">
-                            <!-- REPLACE: Add food item image here for ${item.name} -->
-                            <img src="https://z-cdn-media.chatglm.cn/files/f16c914a-c91a-41cb-9974-e8aae61517aa.jpeg?auth_key=1873520342-118af2c3b41e461f8f3b76efbfbabd46-0-0db4f69519c0b851bad034fb715c2eec" alt="${item.name}" class="w-full h-full object-cover">
+                    <!-- Content -->
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-lg text-text leading-tight pr-2">${item.name}</h3>
+                            <span class="font-bold text-lg text-accent">₹${item.price}</span>
                         </div>
-                        <div class="flex-1">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-semibold text-[var(--fg)] leading-tight pr-2">${item.name}</h3>
-                                <span class="price-tag flex-shrink-0">₹${item.price}</span>
+                        
+                        <p class="text-xs text-muted mb-4">${item.desc}</p>
+
+                        <!-- Spice Meter -->
+                        <div class="mb-6">
+                            <div class="flex justify-between items-center mb-1.5">
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-muted">Spice Level</span>
+                                <span class="text-[10px] font-bold text-accent">${item.spice}/5</span>
                             </div>
-                            ${item.spiceLevel > 0 ? `
-                                <div class="flex items-center gap-2 mb-2">
-                                    <div class="spice-level">
-                                        ${[1,2,3,4,5].map(i => `
-                                            <span class="spice-icon ${i <= item.spiceLevel ? '' : 'inactive'}">
-                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                                                </svg>
-                                            </span>
-                                        `).join('')}
-                                    </div>
-                                    ${item.spiceText ? `<span class="text-xs text-[var(--muted)]">${item.spiceText}</span>` : ''}
-                                </div>
-                            ` : ''}
-                            <p class="text-sm text-[var(--fg-light)] mb-3">${item.description}</p>
-                            <div class="flex items-center justify-between">
-                                ${getCartControls(item)}
+                            <div class="spice-track">
+                                <div class="spice-fill" style="width: ${spiceWidth}%"></div>
                             </div>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="flex items-center justify-between pt-4 border-t border-border">
+                            <div class="qty-controller">
+                                <button class="qty-btn" onclick="updateCart(${item.id}, -1)">−</button>
+                                <div class="qty-val">${qty}</div>
+                                <button class="qty-btn" onclick="updateCart(${item.id}, 1)">+</button>
+                            </div>
+                            
+                            <button onclick="updateCart(${item.id}, 1)" class="bg-text text-white px-5 py-2 rounded-full text-xs font-semibold hover:bg-accent transition-all">
+                                Add
+                            </button>
                         </div>
                     </div>
                 </div>
-            `).join('');
-
-            // Trigger reveal animation
-            setTimeout(() => {
-                document.querySelectorAll('.menu-card.reveal').forEach(el => el.classList.add('active'));
-            }, 100);
+            `}).join('');
         }
 
-        // Get Cart Controls for Menu Item
-        function getCartControls(item) {
-            const cartItem = cart.find(c => c.id === item.id);
-            if (cartItem) {
-                return `
-                    <div class="qty-control">
-                        <button class="qty-btn minus" onclick="updateQuantity(${item.id}, -1)" aria-label="Decrease quantity">-</button>
-                        <span class="qty-display">${cartItem.quantity}</span>
-                        <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)" aria-label="Increase quantity">+</button>
-                    </div>
-                `;
-            }
-            return `
-                <button onclick="addToCart(${item.id})" class="btn-primary text-sm py-2 px-4">
-                    Add to Order
-                </button>
-            `;
+        // --- CART LOGIC ---
+        function getQty(id) {
+            const item = cart.find(c => c.id === id);
+            return item ? item.qty : 0;
         }
 
-        // Filter Category
-        function filterCategory(category) {
-            document.querySelectorAll('.category-tab').forEach(tab => {
-                tab.classList.remove('active');
-                if (tab.textContent.toLowerCase().includes(category) || (category === 'all' && tab.textContent.includes('All'))) {
-                    tab.classList.add('active');
-                }
-            });
-            renderMenu(category);
-        }
-
-        // Add to Cart
-        function addToCart(id) {
-            const item = menuItems.find(i => i.id === id);
-            if (!item) return;
-
-            const existingItem = cart.find(c => c.id === id);
-            if (existingItem) {
-                existingItem.quantity++;
-            } else {
-                cart.push({ ...item, quantity: 1 });
-            }
-
-            updateCartUI();
-            renderMenu(document.querySelector('.category-tab.active')?.textContent.toLowerCase().includes('bhungla') ? 'bhungla' : 
-                       document.querySelector('.category-tab.active')?.textContent.toLowerCase().includes('snacks') ? 'snacks' :
-                       document.querySelector('.category-tab.active')?.textContent.toLowerCase().includes('drinks') ? 'drinks' : 'all');
-            showToast(`${item.name} added to order`);
-        }
-
-        // Update Quantity
-        function updateQuantity(id, change) {
-            const itemIndex = cart.findIndex(c => c.id === id);
-            if (itemIndex === -1) return;
-
-            cart[itemIndex].quantity += change;
-
-            if (cart[itemIndex].quantity <= 0) {
-                cart.splice(itemIndex, 1);
-            }
-
-            updateCartUI();
-            renderMenu(document.querySelector('.category-tab.active')?.textContent.toLowerCase().includes('bhungla') ? 'bhungla' : 
-                       document.querySelector('.category-tab.active')?.textContent.toLowerCase().includes('snacks') ? 'snacks' :
-                       document.querySelector('.category-tab.active')?.textContent.toLowerCase().includes('drinks') ? 'drinks' : 'all');
-        }
-
-        // Update Cart UI
-        function updateCartUI() {
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        function updateCart(id, delta) {
+            const existing = cart.find(c => c.id === id);
             
-            // Update badges
-            if (navCartBadge) {
-                if (totalItems > 0) {
-                    navCartBadge.textContent = totalItems;
-                    navCartBadge.classList.remove('hidden');
-                } else {
-                    navCartBadge.classList.add('hidden');
+            if (existing) {
+                existing.qty += delta;
+                if (existing.qty <= 0) {
+                    cart = cart.filter(c => c.id !== id);
                 }
+            } else if (delta > 0) {
+                const item = menuData.find(m => m.id === id);
+                cart.push({ ...item, qty: 1 });
             }
 
-            if (floatingCartBadge) {
-                if (totalItems > 0) {
-                    floatingCartBadge.textContent = totalItems;
-                    floatingCartBadge.classList.remove('hidden');
-                    floatingCart.classList.remove('hidden');
-                } else {
-                    floatingCartBadge.classList.add('hidden');
-                    floatingCart.classList.add('hidden');
-                }
-            }
-
-            renderCartContent();
+            updateUI();
+            renderMenu(document.querySelector('.filter-btn.active').dataset.cat);
+            renderCartItems();
         }
 
-        // Render Cart Content
-        function renderCartContent() {
-            if (!cartContent || !cartFooter) return;
-            
+        function updateUI() {
+            const count = cart.reduce((s, i) => s + i.qty, 0);
+            const total = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+
+            // Nav Counter
+            const navCount = document.getElementById('nav-cart-count');
+            navCount.textContent = count;
+            navCount.classList.toggle('scale-0', count === 0);
+            navCount.classList.toggle('opacity-0', count === 0);
+            navCount.classList.toggle('scale-100', count > 0);
+            navCount.classList.toggle('opacity-100', count > 0);
+
+            // Mobile Bar
+            const mBar = document.getElementById('mobile-bar');
+            mBar.classList.toggle('active', count > 0);
+            document.getElementById('m-count').textContent = count;
+            document.getElementById('m-total').textContent = `₹${total}`;
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items');
+            const empty = document.getElementById('empty-state');
+            const subtitle = document.getElementById('cart-subtitle');
+            const actionBtn = document.getElementById('action-btn');
+
             if (cart.length === 0) {
-                cartContent.innerHTML = `
-                    <div class="flex flex-col items-center justify-center h-full p-8 text-center">
-                        <div class="w-24 h-24 bg-[var(--bg-warm)] rounded-full flex items-center justify-center mb-4">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.5">
-                                <circle cx="9" cy="21" r="1"></circle>
-                                <circle cx="20" cy="21" r="1"></circle>
-                                <path d="m1 1 4 4h16l-2.5 9H6.5"></path>
-                            </svg>
-                        </div>
-                        <h3 class="font-semibold text-[var(--fg)] mb-2">Your cart is empty</h3>
-                        <p class="text-[var(--muted)] text-sm">Add some delicious items to get started</p>
-                    </div>
-                `;
-                cartFooter.classList.add('hidden');
-                return;
-            }
-
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-
-            if (orderStep === 1) {
-                // Cart View
-                cartContent.innerHTML = `
-                    <div class="p-4 space-y-4">
-                        ${cart.map(item => `
-                            <div class="flex gap-4 p-4 bg-[var(--bg-warm)] rounded-xl">
-                                <div class="w-16 h-16 rounded-lg img-placeholder overflow-hidden flex-shrink-0">
-                                    <img src="https://z-cdn-media.chatglm.cn/files/f16c914a-c91a-41cb-9974-e8aae61517aa.jpeg?auth_key=1873520342-118af2c3b41e461f8f3b76efbfbabd46-0-0db4f69519c0b851bad034fb715c2eec" alt="${item.name}" class="w-full h-full object-cover">
-                                </div>
-                                <div class="flex-1">
-                                    <h4 class="font-medium text-[var(--fg)] text-sm leading-tight">${item.name}</h4>
-                                    <p class="text-[var(--accent)] font-semibold mt-1">₹${item.price}</p>
-                                </div>
-                                <div class="qty-control">
-                                    <button class="qty-btn minus" onclick="updateQuantity(${item.id}, -1)" aria-label="Decrease">-</button>
-                                    <span class="qty-display">${item.quantity}</span>
-                                    <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)" aria-label="Increase">+</button>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-
-                cartFooter.classList.remove('hidden');
-                cartFooter.innerHTML = `
-                    <div class="space-y-4">
-                        <div class="flex justify-between text-lg">
-                            <span class="text-[var(--fg-light)]">Subtotal</span>
-                            <span class="font-bold text-[var(--fg)]">₹${subtotal}</span>
-                        </div>
-                        <p class="text-xs text-[var(--muted)]">Parcel charges (₹10) and delivery charges (if applicable) will be added</p>
-                        <button onclick="goToStep(2)" class="btn-primary w-full">
-                            Continue to Order
-                        </button>
-                    </div>
-                `;
-            } else if (orderStep === 2) {
-                // Order Details Form
-                cartContent.innerHTML = `
-                    <div class="p-6 space-y-5">
-                        <div class="step-indicator">
-                            <div class="step-dot completed"></div>
-                            <div class="step-dot active"></div>
-                            <div class="step-dot"></div>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-medium text-[var(--fg)] mb-2">Your Name *</label>
-                            <input type="text" id="customerName" class="form-input" placeholder="Enter your name" required>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-medium text-[var(--fg)] mb-2">Phone Number *</label>
-                            <input type="tel" id="customerPhone" class="form-input" placeholder="Enter your phone number" pattern="[0-9]{10}" required>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-medium text-[var(--fg)] mb-2">Order Type *</label>
-                            <div class="grid grid-cols-2 gap-3">
-                                <div class="radio-option" onclick="selectOrderType('pickup')" id="pickupOption">
-                                    <div class="radio-circle"></div>
-                                    <div>
-                                        <span class="font-medium text-[var(--fg)]">Pickup</span>
-                                        <span class="block text-xs text-[var(--muted)]">Collect from shop</span>
-                                    </div>
-                                </div>
-                                <div class="radio-option" onclick="selectOrderType('delivery')" id="deliveryOption">
-                                    <div class="radio-circle"></div>
-                                    <div>
-                                        <span class="font-medium text-[var(--fg)]">Delivery</span>
-                                        <span class="block text-xs text-[var(--muted)]">Home delivery</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div id="addressSection" class="hidden">
-                            <label class="block text-sm font-medium text-[var(--fg)] mb-2">Delivery Address *</label>
-                            <textarea id="customerAddress" class="form-input" rows="3" placeholder="Enter your full address"></textarea>
-                            <p class="text-xs text-[var(--accent)] mt-2">Extra delivery charges will apply based on location</p>
-                        </div>
-                        
-                        <div id="pickupSection" class="hidden">
-                            <p class="text-sm text-[var(--fg-light)] mb-3">Pick up your order from our location:</p>
-                            <a href="https://maps.app.goo.gl/TRxf49KJaL5XdeRQ7" target="_blank" class="location-btn">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                    <circle cx="12" cy="10" r="3"></circle>
-                                </svg>
-                                View Location on Map
-                            </a>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-medium text-[var(--fg)] mb-2">Special Instructions</label>
-                            <textarea id="customerNotes" class="form-input" rows="2" placeholder="Any special requests? (e.g., less spicy, extra chutney)"></textarea>
-                        </div>
-                    </div>
-                `;
-
-                cartFooter.innerHTML = `
-                    <div class="flex gap-3">
-                        <button onclick="goToStep(1)" class="btn-secondary flex-1">
-                            Back
-                        </button>
-                        <button onclick="goToStep(3)" class="btn-primary flex-1">
-                            Review Order
-                        </button>
-                    </div>
-                `;
-            } else if (orderStep === 3) {
-                // Order Summary
-                const orderType = document.getElementById('pickupOption')?.classList.contains('selected') ? 'pickup' : 'delivery';
-                const name = document.getElementById('customerName')?.value || '';
-                const phone = document.getElementById('customerPhone')?.value || '';
-                const address = document.getElementById('customerAddress')?.value || '';
-                const notes = document.getElementById('customerNotes')?.value || '';
-                
-                const parcelCharge = 10;
-                const deliveryCharge = orderType === 'delivery' ? 30 : 0; // Assuming 30 for delivery
-                const total = subtotal + parcelCharge + deliveryCharge;
-
-                cartContent.innerHTML = `
-                    <div class="p-6 space-y-5">
-                        <div class="step-indicator">
-                            <div class="step-dot completed"></div>
-                            <div class="step-dot completed"></div>
-                            <div class="step-dot active"></div>
-                        </div>
-                        
-                        <div class="bg-[var(--bg-warm)] rounded-xl p-4">
-                            <h4 class="font-semibold text-[var(--fg)] mb-3">Order Summary</h4>
-                            <div class="space-y-2 text-sm">
-                                ${cart.map(item => `
-                                    <div class="flex justify-between">
-                                        <span class="text-[var(--fg-light)]">${item.name} x ${item.quantity}</span>
-                                        <span class="font-medium">₹${item.price * item.quantity}</span>
-                                    </div>
-                                `).join('')}
-                            </div>
-                            <div class="border-t border-[var(--border)] mt-3 pt-3 space-y-2 text-sm">
-                                <div class="flex justify-between">
-                                    <span class="text-[var(--fg-light)]">Subtotal</span>
-                                    <span>₹${subtotal}</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <span class="text-[var(--fg-light)]">Parcel Charges</span>
-                                    <span>₹${parcelCharge}</span>
-                                </div>
-                                ${orderType === 'delivery' ? `
-                                    <div class="flex justify-between">
-                                        <span class="text-[var(--fg-light)]">Delivery Charges</span>
-                                        <span>₹${deliveryCharge}</span>
-                                    </div>
-                                ` : ''}
-                                <div class="flex justify-between text-lg font-bold pt-2 border-t border-[var(--border)]">
-                                    <span>Total</span>
-                                    <span class="text-[var(--accent)]">₹${total}</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-[var(--blue-light)] rounded-xl p-4">
-                            <h4 class="font-semibold text-[var(--fg)] mb-2">Customer Details</h4>
-                            <p class="text-sm text-[var(--fg-light)]"><strong>Name:</strong> ${name}</p>
-                            <p class="text-sm text-[var(--fg-light)]"><strong>Phone:</strong> ${phone}</p>
-                            <p class="text-sm text-[var(--fg-light)]"><strong>Order Type:</strong> ${orderType === 'pickup' ? 'Pickup' : 'Delivery'}</p>
-                            ${orderType === 'delivery' && address ? `<p class="text-sm text-[var(--fg-light)]"><strong>Address:</strong> ${address}</p>` : ''}
-                            ${notes ? `<p class="text-sm text-[var(--fg-light)]"><strong>Notes:</strong> ${notes}</p>` : ''}
-                        </div>
-                        
-                        <p class="text-xs text-center text-[var(--muted)]">
-                            Clicking "Confirm Order" will open WhatsApp with your order details. Send the message to complete your order.
-                        </p>
-                    </div>
-                `;
-
-                cartFooter.innerHTML = `
-                    <div class="flex gap-3">
-                        <button onclick="goToStep(2)" class="btn-secondary flex-1">
-                            Back
-                        </button>
-                        <button onclick="confirmOrder()" class="btn-primary flex-1">
-                            Confirm Order
-                        </button>
-                    </div>
-                `;
-            }
-        }
-
-        // Order Type Selection
-        function selectOrderType(type) {
-            const pickupOption = document.getElementById('pickupOption');
-            const deliveryOption = document.getElementById('deliveryOption');
-            const addressSection = document.getElementById('addressSection');
-            const pickupSection = document.getElementById('pickupSection');
-
-            if (type === 'pickup') {
-                pickupOption.classList.add('selected');
-                deliveryOption.classList.remove('selected');
-                addressSection.classList.add('hidden');
-                pickupSection.classList.remove('hidden');
+                empty.classList.remove('hidden');
+                container.classList.add('hidden');
+                subtitle.textContent = "Add items to get started";
+                actionBtn.disabled = true;
             } else {
-                deliveryOption.classList.add('selected');
-                pickupOption.classList.remove('selected');
-                addressSection.classList.remove('hidden');
-                pickupSection.classList.add('hidden');
+                empty.classList.add('hidden');
+                container.classList.remove('hidden');
+                subtitle.textContent = `${cart.reduce((s, i) => s + i.qty, 0)} items in cart`;
+                actionBtn.disabled = false;
+
+                container.innerHTML = cart.map(i => `
+                    <div class="flex items-center gap-3 p-3 bg-surface rounded-xl border border-border">
+                        <img src="${i.img}" class="w-16 h-16 rounded-lg object-cover bg-white">
+                        <div class="flex-1">
+                            <h4 class="text-sm font-semibold leading-tight">${i.name}</h4>
+                            <p class="text-xs text-muted">₹${i.price} each</p>
+                        </div>
+                        <div class="qty-controller border-border scale-90">
+                            <button class="qty-btn" onclick="updateCart(${i.id}, -1)">−</button>
+                            <div class="qty-val">${i.qty}</div>
+                            <button class="qty-btn" onclick="updateCart(${i.id}, 1)">+</button>
+                        </div>
+                    </div>
+                `).join('');
             }
         }
 
-        // Navigation Steps
-        function goToStep(step) {
-            if (step === 2) {
-                if (cart.length === 0) {
-                    showToast('Please add items to your cart first');
-                    return;
+        // --- NAVIGATION ---
+        function filterMenu(cat) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-text', 'text-white');
+                if (btn.dataset.cat === cat) {
+                    btn.classList.add('bg-text', 'text-white');
                 }
-            }
-            
-            if (step === 3) {
-                const name = document.getElementById('customerName')?.value;
-                const phone = document.getElementById('customerPhone')?.value;
-                const orderType = document.getElementById('pickupOption')?.classList.contains('selected') ? 'pickup' : 'delivery';
-                const address = document.getElementById('customerAddress')?.value;
-
-                if (!name || name.trim() === '') {
-                    showToast('Please enter your name');
-                    return;
-                }
-                if (!phone || phone.trim() === '' || phone.length < 10) {
-                    showToast('Please enter a valid phone number');
-                    return;
-                }
-                if (!document.getElementById('pickupOption').classList.contains('selected') && 
-                    !document.getElementById('deliveryOption').classList.contains('selected')) {
-                    showToast('Please select order type');
-                    return;
-                }
-                if (orderType === 'delivery' && (!address || address.trim() === '')) {
-                    showToast('Please enter your delivery address');
-                    return;
-                }
-            }
-            
-            orderStep = step;
-            renderCartContent();
-        }
-
-        // Confirm Order - WhatsApp
-        function confirmOrder() {
-            const name = document.getElementById('customerName')?.value || '';
-            const phone = document.getElementById('customerPhone')?.value || '';
-            const orderType = document.getElementById('pickupOption')?.classList.contains('selected') ? 'pickup' : 'delivery';
-            const address = document.getElementById('customerAddress')?.value || '';
-            const notes = document.getElementById('customerNotes')?.value || '';
-
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const parcelCharge = 10;
-            const deliveryCharge = orderType === 'delivery' ? 30 : 0;
-            const total = subtotal + parcelCharge + deliveryCharge;
-
-            let message = `*New Order - Bunty Kaka Bhavanagri*\n\n`;
-            message += `*Customer Details:*\n`;
-            message += `Name: ${name}\n`;
-            message += `Phone: ${phone}\n`;
-            message += `Order Type: ${orderType === 'pickup' ? 'Pickup' : 'Delivery'}\n`;
-            if (orderType === 'delivery' && address) {
-                message += `Address: ${address}\n`;
-            }
-            message += `\n*Order Items:*\n`;
-            cart.forEach(item => {
-                message += `- ${item.name} x ${item.quantity} = ₹${item.price * item.quantity}\n`;
             });
-            message += `\n*Bill Summary:*\n`;
-            message += `Subtotal: ₹${subtotal}\n`;
-            message += `Parcel Charges: ₹${parcelCharge}\n`;
-            if (orderType === 'delivery') {
-                message += `Delivery Charges: ₹${deliveryCharge}\n`;
-            }
-            message += `*Total: ₹${total}*\n`;
-            if (notes) {
-                message += `\n*Special Instructions:*\n${notes}\n`;
-            }
-            message += `\nThank you for ordering!`;
-
-            const whatsappUrl = `https://wa.me/919824847345?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
-
-            // Reset cart after order
-            setTimeout(() => {
-                cart = [];
-                orderStep = 1;
-                updateCartUI();
-                closeCart();
-                showToast('Order placed successfully!');
-            }, 1000);
+            renderMenu(cat);
         }
 
-        // Open Cart
-        function openCart() {
-            if (cartSidebar && cartOverlay) {
-                cartSidebar.classList.add('open');
-                cartOverlay.classList.add('open');
+        function toggleCart(open) {
+            if (open) {
+                cartDrawer.classList.add('open');
+                cartOverlay.classList.remove('opacity-0', 'pointer-events-none');
                 document.body.style.overflow = 'hidden';
-                orderStep = 1;
-                renderCartContent();
-            }
-        }
-
-        // Close Cart
-        function closeCart() {
-            if (cartSidebar && cartOverlay) {
-                cartSidebar.classList.remove('open');
-                cartOverlay.classList.remove('open');
+                renderCartItems();
+                goToStep(1); // Reset to step 1
+            } else {
+                cartDrawer.classList.remove('open');
+                cartOverlay.classList.add('opacity-0', 'pointer-events-none');
                 document.body.style.overflow = '';
             }
         }
 
-        // Show Toast
-        function showToast(message) {
-            if (toast) {
-                toast.textContent = message;
-                toast.classList.add('show');
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 3000);
+        function goToStep(step) {
+            currentStep = step;
+            
+            // Tabs
+            [1, 2, 3].forEach(s => {
+                const tab = document.getElementById(`step-${s}-tab`);
+                const content = document.getElementById(`step-${s}`);
+                
+                if (s <= step) {
+                    tab.classList.add('text-accent', 'border-accent');
+                    tab.classList.remove('text-muted', 'border-transparent');
+                } else {
+                    tab.classList.remove('text-accent', 'border-accent');
+                    tab.classList.add('text-muted', 'border-transparent');
+                }
+                
+                content.classList.toggle('hidden', s !== step);
+            });
+
+            // Button Text
+            const btn = document.getElementById('action-btn');
+            if (step === 1) btn.innerHTML = `Continue <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>`;
+            else if (step === 2) btn.innerHTML = `Review Order <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>`;
+            else if (step === 3) btn.innerHTML = `<svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Send Order`;
+        }
+
+        function handleAction() {
+            if (currentStep === 1) goToStep(2);
+            else if (currentStep === 2) {
+                if (validateForm()) {
+                    generateSummary();
+                    goToStep(3);
+                }
+            }
+            else if (currentStep === 3) sendWhatsApp();
+        }
+
+        // --- FORM & ORDER ---
+        function setOrderType(type) {
+            orderType = type;
+            
+            document.querySelectorAll('.order-type-btn').forEach(btn => {
+                btn.classList.remove('bg-text', 'text-white');
+                btn.classList.add('bg-surface');
+                if (btn.dataset.type === type) {
+                    btn.classList.add('bg-text', 'text-white');
+                    btn.classList.remove('bg-surface');
+                }
+            });
+
+            // Toggle UI
+            const infoBox = document.getElementById('info-box');
+            const addrBox = document.getElementById('input-addr-box');
+            const tableBox = document.getElementById('input-table-box');
+
+            if (type === 'pickup') {
+                infoBox.innerHTML = `<p>Pickup from our shop. <a href="https://maps.app.goo.gl/TRxf49KJaL5XdeRQ7" target="_blank" class="underline font-bold text-accent">View Location</a></p>`;
+                infoBox.classList.remove('hidden');
+                addrBox.classList.add('hidden');
+                tableBox.classList.add('hidden');
+            } else if (type === 'delivery') {
+                infoBox.classList.add('hidden');
+                addrBox.classList.remove('hidden');
+                tableBox.classList.add('hidden');
+            } else {
+                infoBox.classList.remove('hidden');
+                infoBox.innerHTML = `<p>Order directly to your table. Sit back and relax!</p>`;
+                addrBox.classList.add('hidden');
+                tableBox.classList.remove('hidden');
             }
         }
 
-        // Scroll Reveal
-        function initScrollReveal() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
+        function validateForm() {
+            const name = document.getElementById('input-name').value;
+            const phone = document.getElementById('input-phone').value;
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
-                });
-            }, observerOptions);
+            if (!name) return alert("Please enter your name"), false;
+            if (!phone || phone.length < 10) return alert("Please enter a valid 10-digit phone number"), false;
+            
+            if (orderType === 'delivery') {
+                const addr = document.getElementById('input-address').value;
+                if (!addr) return alert("Please enter delivery address"), false;
+            }
+            
+            if (orderType === 'table') {
+                const table = document.getElementById('input-table').value;
+                if (!table) return alert("Please enter table number"), false;
+            }
 
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            return true;
         }
 
-        // Keyboard Navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeCart();
+        function generateSummary() {
+            const sub = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+            const parcel = orderType !== 'table' ? PARCEL_CHARGE : 0;
+            const total = sub + parcel;
+
+            document.getElementById('sum-items').innerHTML = cart.map(i => `
+                <div class="flex justify-between text-muted"><span>${i.qty}x ${i.name}</span> <span>₹${i.price * i.qty}</span></div>
+            `).join('');
+
+            document.getElementById('sum-sub').textContent = `₹${sub}`;
+            document.getElementById('sum-total').textContent = `₹${total}`;
+            document.getElementById('sum-parcel-row').classList.toggle('hidden', orderType === 'table');
+
+            document.getElementById('sum-name').textContent = document.getElementById('input-name').value;
+            document.getElementById('sum-phone').textContent = document.getElementById('input-phone').value;
+            document.getElementById('sum-type').textContent = orderType;
+            
+            const addrRow = document.getElementById('sum-addr-row');
+            if (orderType === 'delivery') {
+                addrRow.classList.remove('hidden');
+                document.getElementById('sum-address').textContent = document.getElementById('input-address').value;
+            } else {
+                addrRow.classList.add('hidden');
             }
+        }
+
+        function sendWhatsApp() {
+            const name = document.getElementById('input-name').value;
+            const phone = document.getElementById('input-phone').value;
+            const notes = document.getElementById('input-notes').value;
+            const sub = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+            const parcel = orderType !== 'table' ? PARCEL_CHARGE : 0;
+            const total = sub + parcel;
+
+            let msg = `*New Order - Bunty Kaka Website*%0A%0A`;
+            msg += `*Name:* ${name}%0A`;
+            msg += `*Phone:* ${phone}%0A`;
+            msg += `*Type:* ${orderType.toUpperCase()}%0A`;
+            
+            if (orderType === 'delivery') msg += `*Address:* ${document.getElementById('input-address').value}%0A`;
+            if (orderType === 'table') msg += `*Table:* ${document.getElementById('input-table').value}%0A`;
+            
+            msg += `%0A*Order:*%0A`;
+            cart.forEach(i => msg += `${i.qty}x ${i.name} - ₹${i.price * i.qty}%0A`);
+            
+            msg += `%0A*Subtotal:* ₹${sub}%0A`;
+            if (parcel > 0) msg += `*Parcel:* ₹${parcel}%0A`;
+            msg += `*TOTAL:* ₹${total}%0A`;
+            
+            if (notes) msg += `%0A*Notes:* ${notes}%0A`;
+
+            window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
+        }
+
+        // Scroll Animation Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-up');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
         });
+
     </script>
 </body>
 </html>
